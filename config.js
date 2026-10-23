@@ -41,16 +41,16 @@ window.SITE = {
   },
 
   offers: [
-    { icon: "◐", title: { fr: "Reel Instagram", en: "Instagram Reel" },
+    { icon: "♡", title: { fr: "Reel Instagram", en: "Instagram Reel" },
       text: { fr: "Concept, tournage et montage. Diffusé sur le compte, format vertical natif.",
               en: "Concept, shoot and edit. Published on the account, native vertical format." } },
-    { icon: "◌", title: { fr: "Stories", en: "Stories" },
+    { icon: "✿", title: { fr: "Stories", en: "Stories" },
       text: { fr: "Séquence de 3 à 5 stories avec lien, sticker et code promo.",
               en: "3–5 story sequence with link, sticker and promo code." } },
-    { icon: "◇", title: { fr: "Contenu UGC", en: "UGC content" },
+    { icon: "✧", title: { fr: "Contenu UGC", en: "UGC content" },
       text: { fr: "Vidéos et photos livrées à la marque pour ses propres canaux et ses ads.",
               en: "Videos and photos delivered for the brand's own channels and ads." } },
-    { icon: "○", title: { fr: "Événements & lancements", en: "Events & launches" },
+    { icon: "❀", title: { fr: "Événements & lancements", en: "Events & launches" },
       text: { fr: "Présence et couverture en direct à Genève et en Suisse romande.",
               en: "Attendance and live coverage in Geneva and French-speaking Switzerland." } }
   ],
