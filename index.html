@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helin Kinem · Media Kit</title>
+<meta name="description" content="Créatrice de contenu basée à Genève — media kit et collaborations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f1ea;
+    --bg-2: #efe7dc;
+    --ink: #1d1a17;
+    --muted: #6f665d;
+    --line: #d9cfc2;
+    --accent: #2f5d7c;           /* bleu Léman — remplacé par ?c= */
+    --accent-ink: #ffffff;
+    --card: #fbf8f3;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141210; --bg-2: #1c1916; --ink: #f1ebe3; --muted: #a59a8e;
+      --line: #35302a; --card: #1f1b18;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141210; --bg-2: #1c1916; --ink: #f1ebe3; --muted: #a59a8e;
+    --line: #35302a; --card: #1f1b18;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 300;
+         line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .eyebrow { font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; }
+  h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: .4rem 0 1.6rem; }
+  section { padding: clamp(64px, 10vw, 120px) 0; }
+
+  /* Navigation */
+  nav { position: fixed; inset: 0 0 auto; z-index: 20; transition: background .4s, border-color .4s;
+        border-bottom: 1px solid transparent; }
+  nav.solid { background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px);
+              border-color: var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: var(--serif); font-size: 1.35rem; text-decoration: none; }
+  .nav-r { display: flex; gap: 8px; align-items: center; }
+  .pill { border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 99px;
+          padding: 6px 14px; font: 500 .72rem var(--sans); letter-spacing: .12em; cursor: pointer; text-decoration: none; }
+  .pill.solid { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+  /* Hero */
+  .hero { min-height: 100svh; display: grid; align-items: center; padding-top: 96px; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .for { display: inline-flex; gap: 10px; align-items: center; margin-bottom: 28px; opacity: 0; animation: up .9s .1s forwards; }
+  .for .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .hero h1 { font-size: clamp(3.4rem, 10vw, 7.5rem); letter-spacing: -.01em; }
+  .hero h1 span { display: block; opacity: 0; animation: up 1s forwards; }
+  .hero h1 span:nth-child(2) { animation-delay: .15s; font-style: italic; padding-left: .6em; }
+  .hero p.lead { max-width: 30em; margin: 28px 0 36px; color: var(--muted); font-size: 1.05rem;
+                 opacity: 0; animation: up 1s .35s forwards; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; opacity: 0; animation: up 1s .5s forwards; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 99px;
+         font: 500 .85rem var(--sans); letter-spacing: .04em; text-decoration: none; transition: transform .25s, opacity .25s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { border: 1px solid var(--line); }
+  .portrait { aspect-ratio: 4/5; border-radius: 240px 240px 18px 18px; overflow: hidden; position: relative;
+              background: linear-gradient(160deg, var(--bg-2), color-mix(in srgb, var(--accent) 35%, var(--bg-2)));
+              opacity: 0; animation: fade 1.4s .2s forwards; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .portrait .badge { position: absolute; left: 16px; bottom: 16px; background: var(--card); color: var(--ink);
+                     border-radius: 99px; padding: 8px 14px; font-size: .75rem; display: flex; gap: 8px; align-items: center; }
+  .scroll-hint { position: absolute; bottom: 24px; left: 50%; translate: -50% 0; font-size: .7rem; letter-spacing: .2em;
+                 color: var(--muted); text-transform: uppercase; }
+
+  /* Marquee */
+  .marquee { border-block: 1px solid var(--line); overflow: hidden; padding: 18px 0; background: var(--bg-2); }
+  .marquee-track { display: flex; gap: 48px; width: max-content; animation: slide 40s linear infinite;
+                   font-family: var(--serif); font-size: 1.6rem; font-style: italic; white-space: nowrap; }
+  .marquee-track i { color: var(--accent); font-style: normal; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+  .stat { padding: 32px 20px 8px 0; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: 0; }
+  .stat b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1; }
+  .stat span { font-size: .82rem; color: var(--muted); }
+  .note { font-size: .72rem; color: var(--muted); margin-top: 20px; }
+
+  /* About + audience */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); }
+  .about p { font-size: 1.05rem; margin-bottom: 1em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .chip { border: 1px solid var(--line); border-radius: 99px; padding: 6px 14px; font-size: .8rem; }
+  .aud { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+  .aud h3 { font-size: 1.5rem; margin-bottom: 18px; }
+  .bar { display: grid; grid-template-columns: 80px 1fr 44px; gap: 12px; align-items: center; font-size: .82rem; margin: 10px 0; }
+  .bar .t { height: 6px; border-radius: 6px; background: var(--bg-2); overflow: hidden; }
+  .bar .f { height: 100%; width: 0; background: var(--accent); border-radius: 6px; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .bar em { font-style: normal; text-align: right; color: var(--muted); }
+  .gender { display: flex; height: 10px; border-radius: 10px; overflow: hidden; margin: 6px 0 8px; background: var(--bg-2); }
+  .gender div { background: var(--accent); width: 0; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .aud .sub { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 22px; }
+
+  /* Portfolio */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tile { position: relative; aspect-ratio: 4/5; border-radius: 14px; overflow: hidden;
+          background: linear-gradient(150deg, var(--bg-2), color-mix(in srgb, var(--accent) 28%, var(--bg-2))); }
+  .tile:nth-child(3n+2) { translate: 0 40px; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+  .tile:hover img { transform: scale(1.05); }
+  .tile .tag { position: absolute; left: 12px; bottom: 12px; background: var(--card); color: var(--ink);
+               border-radius: 99px; padding: 5px 12px; font-size: .72rem; }
+  .tile .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif);
+              font-style: italic; font-size: 1.8rem; color: var(--muted); }
+
+  /* Offers */
+  .offers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .offer { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 22px;
+           transition: transform .35s, border-color .35s; }
+  .offer:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .offer .ic { font-size: 1.6rem; color: var(--accent); }
+  .offer h3 { font-size: 1.55rem; margin: 14px 0 8px; }
+  .offer p { font-size: .88rem; color: var(--muted); }
+
+  .brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 48px; font-family: var(--serif);
+            font-size: clamp(1.4rem, 3vw, 2rem); color: var(--muted); }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--bg); border-radius: 28px; padding: clamp(40px, 8vw, 96px) clamp(24px, 6vw, 80px);
+             text-align: center; }
+  .contact h2 { margin-bottom: 1rem; }
+  .contact p { color: color-mix(in srgb, var(--bg) 70%, transparent); max-width: 34em; margin: 0 auto 32px; }
+  .contact .btn.ghost { border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
+  footer { padding: 40px 0; text-align: center; font-size: .75rem; color: var(--muted); }
+
+  /* Reveal */
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity 1s, transform 1s cubic-bezier(.2,.8,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+
+  @keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .split { grid-template-columns: 1fr; }
+    .portrait { max-width: 420px; width: 100%; margin-inline: auto; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: 0; }
+    .offers { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .tile:nth-child(3n+2) { translate: none; }
+    .tile:nth-child(even) { translate: 0 28px; }
+    .offers { grid-template-columns: 1fr; }
+    .stat { padding-right: 12px; }
+    .scroll-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" data-k="name"></a>
+    <div class="nav-r">
+      <button class="pill" id="lang" aria-label="Changer de langue">EN</button>
+      <a class="pill solid" href="#contact" data-t="nav_cta"></a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="for eyebrow"><span class="dot"></span><span id="forText"></span></div>
+      <h1><span id="first"></span><span id="last"></span></h1>
+      <p class="lead" data-t="lead"></p>
+      <div class="ctas">
+        <a class="btn primary" href="#contact" data-t="cta_collab"></a>
+        <a class="btn ghost" href="#work" data-t="cta_work"></a>
+      </div>
+    </div>
+    <div class="portrait">
+      <img id="portrait" alt="" onerror="this.remove()">
+      <div class="badge"><span>📍</span><span data-k="city"></span> · <span>@<span data-k="handle"></span></span></div>
+    </div>
+  </div>
+  <div class="scroll-hint" data-t="scroll"></div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<section id="stats">
+  <div class="wrap">
+    <div class="eyebrow rv" data-t="stats_eyebrow"></div>
+    <h2 class="rv" data-t="stats_title"></h2>
+    <div class="stats rv" id="statsGrid"></div>
+    <p class="note" id="statsDate"></p>
+  </div>
+</section>
+
+<section id="about" style="background: var(--bg-2)">
+  <div class="wrap split">
+    <div class="about rv">
+      <div class="eyebrow" data-t="about_eyebrow"></div>
+      <h2 data-t="about_title"></h2>
+      <p data-t="about_p1"></p>
+      <p data-t="about_p2"></p>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="aud rv">
+      <h3 data-t="aud_title"></h3>
+      <div class="sub" style="margin-top:0" data-t="aud_gender"></div>
+      <div class="gender"><div id="genderBar"></div></div>
+      <div style="display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted)">
+        <span id="women"></span><span id="men"></span>
+      </div>
+      <div class="sub" data-t="aud_age"></div>
+      <div id="ages"></div>
+      <div class="sub" data-t="aud_cities"></div>
+      <div id="cities"></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="eyebrow rv" data-t="work_eyebrow"></div>
+    <h2 class="rv" data-t="work_title"></h2>
+    <div class="grid" id="grid"></div>
+    <div style="text-align:center; margin-top: 80px">
+      <a class="btn ghost" id="igLink" target="_blank" rel="noopener" data-t="see_ig"></a>
+    </div>
+  </div>
+</section>
+
+<section id="offers" style="padding-top: 0">
+  <div class="wrap">
+    <div class="eyebrow rv" data-t="offers_eyebrow"></div>
+    <h2 class="rv" data-t="offers_title"></h2>
+    <div class="offers" id="offerGrid"></div>
+  </div>
+</section>
+
+<section id="brands" style="padding-top: 0">
+  <div class="wrap">
+    <div class="eyebrow rv" style="text-align:center; margin-bottom: 28px" data-t="brands_eyebrow"></div>
+    <div class="brands rv" id="brandList"></div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top: 0">
+  <div class="wrap">
+    <div class="contact rv">
+      <div class="eyebrow" style="color: inherit; opacity:.6" data-t="contact_eyebrow"></div>
+      <h2 id="contactTitle"></h2>
+      <p data-t="contact_p"></p>
+      <div class="ctas" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center">
+        <a class="btn primary" id="mailBtn" data-t="contact_mail"></a>
+        <a class="btn ghost" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" id="igBtn" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> <span data-k="name"></span> · <span data-k="city"></span></footer>
+
+<script src="config.js"></script>
+<script>
+(() => {
+  const S = window.SITE;
+  const q = new URLSearchParams(location.search);
+  // Personnalisation par marque : ?pour=NomMarque  (ou ?brand=)  &c=hexcouleur  &lang=en
+  const brand = (q.get("pour") || q.get("brand") || "").trim().slice(0, 40);
+  const color = (q.get("c") || "").replace(/[^0-9a-f]/gi, "");
+  if (/^([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color)) {
+    document.documentElement.style.setProperty("--accent", "#" + color);
+  }
+  let lang = q.get("lang") === "en" ? "en" : "fr";
+
+  const T = {
+    fr: {
+      nav_cta: "COLLABORER",
+      for_brand: b => `Une proposition pour ${b}`,
+      for_default: "Media kit · Créatrice de contenu",
+      lead: `Créatrice de contenu basée à ${S.city}. Des images soignées, une voix authentique et une communauté qui fait confiance — pour raconter votre marque avec élégance.`,
+      cta_collab: "Travaillons ensemble", cta_work: "Voir le travail", scroll: "Défiler",
+      marquee: ["Lifestyle", "Genève", "Mode", "Beauté", "Contenu authentique", "Suisse romande"],
+      stats_eyebrow: "En chiffres", stats_title: "Une audience engagée.",
+      stats_date: d => `Données Instagram · ${d}`,
+      about_eyebrow: "À propos", about_title: "Genève, vue de l'intérieur.",
+      about_p1: `Je partage un quotidien genevois entre adresses confidentielles, mode, beauté et escapades — avec un regard esthétique et une parole sincère.`,
+      about_p2: "Mon audience me suit pour des recommandations auxquelles elle peut se fier. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
+      aud_title: "Qui me suit", aud_gender: "Genre", aud_age: "Âge", aud_cities: "Villes principales",
+      women: "Femmes", men: "Hommes",
+      work_eyebrow: "Portfolio", work_title: "Une signature visuelle.", see_ig: "Voir tout sur Instagram ↗",
+      offers_eyebrow: "Formats", offers_title: "Ce que je peux créer pour vous.",
+      brands_eyebrow: "Elles m'ont fait confiance",
+      contact_eyebrow: "Contact",
+      contact_brand: b => `Imaginons quelque chose pour ${b}.`,
+      contact_default: "Imaginons quelque chose ensemble.",
+      contact_p: "Tarifs et disponibilités sur demande. Réponse sous 48 h.",
+      contact_mail: "Écrire un e-mail",
+      mail_subject: b => `Collaboration${b ? " — " + b : ""} × ${S.name}`
+    },
+    en: {
+      nav_cta: "COLLABORATE",
+      for_brand: b => `A proposal for ${b}`,
+      for_default: "Media kit · Content creator",
+      lead: `Content creator based in ${S.city}. Considered visuals, an authentic voice and a community that trusts her — to tell your brand's story with elegance.`,
+      cta_collab: "Let's work together", cta_work: "See the work", scroll: "Scroll",
+      marquee: ["Lifestyle", "Geneva", "Fashion", "Beauty", "Authentic content", "Switzerland"],
+      stats_eyebrow: "By the numbers", stats_title: "An engaged audience.",
+      stats_date: d => `Instagram data · ${d}`,
+      about_eyebrow: "About", about_title: "Geneva, from the inside.",
+      about_p1: "I share Geneva life through hidden addresses, fashion, beauty and getaways — with an aesthetic eye and an honest voice.",
+      about_p2: "My audience follows me for recommendations they can trust. Every collaboration is designed to fit naturally into my world.",
+      aud_title: "Who follows me", aud_gender: "Gender", aud_age: "Age", aud_cities: "Top cities",
+      women: "Women", men: "Men",
+      work_eyebrow: "Portfolio", work_title: "A visual signature.", see_ig: "See everything on Instagram ↗",
+      offers_eyebrow: "Formats", offers_title: "What I can create for you.",
+      brands_eyebrow: "Brands that trusted me",
+      contact_eyebrow: "Contact",
+      contact_brand: b => `Let's imagine something for ${b}.`,
+      contact_default: "Let's imagine something together.",
+      contact_p: "Rates and availability on request. Reply within 48 hours.",
+      contact_mail: "Send an email",
+      mail_subject: b => `Collaboration${b ? " — " + b : ""} × ${S.name}`
+    }
+  };
+
+  const $ = id => document.getElementById(id);
+  const fmt = (n, d = 0) => {
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(".0", "") + "M";
+    if (n >= 1e4) return (n / 1e3).toFixed(1).replace(".0", "") + "K";
+    return n.toLocaleString(lang === "fr" ? "fr-CH" : "en-GB", { minimumFractionDigits: d, maximumFractionDigits: d });
+  };
+  const bar = ([label, v]) =>
+    `<div class="bar"><span>${label}</span><div class="t"><div class="f" data-w="${v}"></div></div><em>${v}%</em></div>`;
+  const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  // Contenu indépendant de la langue
+  document.querySelectorAll("[data-k]").forEach(el => el.textContent = S[el.dataset.k]);
+  const [first, ...rest] = S.name.split(" ");
+  $("first").textContent = first; $("last").textContent = rest.join(" ");
+  $("portrait").src = S.portrait; $("portrait").alt = S.name;
+  $("igLink").href = $("igBtn").href = S.instagram;
+  if (S.whatsapp) $("waBtn").href = "https://wa.me/" + S.whatsapp; else $("waBtn").remove();
+  $("year").textContent = new Date().getFullYear();
+  $("ages").innerHTML = S.audience.ages.map(bar).join("");
+  $("cities").innerHTML = S.audience.cities.map(bar).join("");
+  if (!S.brands || !S.brands.length) $("brands").remove();
+  else $("brandList").innerHTML = S.brands.map(b => `<span>${esc(b)}</span>`).join("");
+  if (brand) document.title = `${S.name} × ${brand}`;
+
+  function render() {
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    $("lang").textContent = lang === "fr" ? "EN" : "FR";
+    document.querySelectorAll("[data-t]").forEach(el => {
+      const v = t[el.dataset.t]; if (typeof v === "string") el.textContent = v;
+    });
+    $("forText").textContent = brand ? t.for_brand(brand) : t.for_default;
+    $("contactTitle").textContent = brand ? t.contact_brand(brand) : t.contact_default;
+    $("mailBtn").href = `mailto:${S.email}?subject=${encodeURIComponent(t.mail_subject(brand))}`;
+
+    const words = brand ? [...t.marquee, `${S.name} × ${brand}`] : t.marquee;
+    const line = words.map(w => `<span>${esc(w)}</span><i>✦</i>`).join("");
+    $("marquee").innerHTML = line + line;
+
+    $("statsGrid").innerHTML = S.stats.map((s, i) =>
+      `<div class="stat"><b data-i="${i}">${fmt(s.value, s.decimals)}${s.suffix}</b><span>${s.label[lang]}</span></div>`).join("");
+    $("statsDate").textContent = t.stats_date(new Date().toLocaleDateString(lang === "fr" ? "fr-CH" : "en-GB", { month: "long", year: "numeric" }));
+    $("chips").innerHTML = S.niches[lang].map(n => `<span class="chip">${esc(n)}</span>`).join("");
+    $("women").textContent = `${t.women} ${S.audience.women}%`;
+    $("men").textContent = `${t.men} ${100 - S.audience.women}%`;
+
+    $("grid").innerHTML = S.portfolio.map(p =>
+      `<figure class="tile rv"><div class="ph">${esc(p.tag[lang])}</div>
+         <img src="${p.src}" alt="${esc(p.tag[lang])}" loading="lazy" onerror="this.remove()">
+         <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`).join("");
+    $("offerGrid").innerHTML = S.offers.map(o =>
+      `<div class="offer rv"><div class="ic">${o.icon}</div><h3>${o.title[lang]}</h3><p>${o.text[lang]}</p></div>`).join("");
+    observe();
+  }
+
+  // Compteurs animés
+  function countUp(el) {
+    const s = S.stats[el.dataset.i], start = performance.now(), dur = 1600;
+    const step = now => {
+      const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(s.value * e, s.decimals) + s.suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    const el = en.target;
+    el.classList.add("in");
+    el.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%");
+    if (el.id === "about" || el.classList.contains("aud")) $("genderBar").style.width = S.audience.women + "%";
+    if (el.classList.contains("stats")) el.querySelectorAll("b[data-i]").forEach(countUp);
+    io.unobserve(el);
+  }), { threshold: 0.15 });
+  function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el)); }
+
+  $("lang").addEventListener("click", () => { lang = lang === "fr" ? "en" : "fr"; render();
+    document.querySelectorAll(".rv").forEach(el => el.classList.add("in")); });
+  addEventListener("scroll", () => $("nav").classList.toggle("solid", scrollY > 40), { passive: true });
+  render();
+})();
+</script>
+</body>
+</html>
