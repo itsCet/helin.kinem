@@ -83,8 +83,6 @@
   .portrait { aspect-ratio: 4/5; border-radius: 240px 240px 22px 22px; overflow: hidden; position: relative;
               background: linear-gradient(170deg, var(--sky) 0%, var(--bg-2) 100%); }
   .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-  .portrait-bow { position: absolute; top: -34px; left: 50%; translate: -50% 0; font-size: 64px; z-index: 2;
-                  filter: drop-shadow(0 6px 10px rgba(91,134,171,.25)); }
   .portrait .badge { position: absolute; left: 16px; bottom: 16px; background: var(--white); color: var(--ink);
                      border-radius: 99px; padding: 8px 16px; font-size: .8rem; display: flex; gap: 8px; align-items: center;
                      box-shadow: var(--shadow); }
@@ -188,9 +186,20 @@
   }
 
   @media (max-width: 900px) {
-    .hero-grid, .split { grid-template-columns: 1fr; }
-    .portrait-wrap { max-width: 400px; width: calc(100% - 28px); margin: 40px auto 0; }
-    .hero { padding-bottom: 56px; }
+    .split { grid-template-columns: 1fr; }
+    /* Mobile : photo à droite du nom, texte et boutons en dessous */
+    .hero { min-height: auto; padding: 100px 0 56px; }
+    .hero-grid { grid-template-columns: 1fr 40%; column-gap: 16px; row-gap: 0;
+                 grid-template-areas: "for for" "name photo" "lead lead" "ctas ctas"; }
+    .hero-text { display: contents; }
+    .hero .for { grid-area: for; justify-self: start; margin-bottom: 26px; }
+    .hero h1 { grid-area: name; align-self: center; font-size: clamp(3rem, 13vw, 5.5rem); }
+    .hero h1 span:nth-child(2) { padding-left: .25em; }
+    .portrait-wrap { grid-area: photo; align-self: center; width: auto; margin: 8px 8px 8px 0; }
+    .portrait-wrap::before { inset: -7px; }
+    .hero p.lead { grid-area: lead; margin: 30px 0 28px; }
+    .hero .ctas { grid-area: ctas; }
+    .sparkle, .scroll-hint { display: none; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .offers { grid-template-columns: repeat(2, 1fr); }
   }
@@ -201,6 +210,7 @@
     .offers { grid-template-columns: 1fr; }
     .stat { padding: 24px 12px; }
     .scroll-hint { display: none; }
+    .portrait .badge { display: none; }
   }
 </style>
 </head>
@@ -226,7 +236,7 @@
 
 <header class="hero" id="top">
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-text">
       <div class="for"><svg class="bow" viewBox="0 0 64 40" aria-hidden="true"><use href="#bow"/></svg><span id="forText"></span></div>
       <h1><span id="first"></span><span id="last"></span></h1>
       <p class="lead" data-t="lead"></p>
@@ -236,7 +246,6 @@
       </div>
     </div>
     <div class="portrait-wrap">
-      <svg class="bow portrait-bow" viewBox="0 0 64 40" aria-hidden="true"><use href="#bow"/></svg>
       <span class="sparkle" style="top:12%; left:-28px">✧</span>
       <span class="sparkle" style="top:58%; right:-30px; animation-delay:1.2s">✦</span>
       <span class="sparkle" style="bottom:-26px; left:22%; animation-delay:2s; font-size:1rem">✧</span>
