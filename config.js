@@ -55,6 +55,12 @@ window.SITE = {
               en: "Attendance and live coverage in Geneva and French-speaking Switzerland." } }
   ],
 
-  // Marques déjà accompagnées — À COMPLÉTER (laisser vide pour masquer la section)
-  brands: ["Marque A", "Marque B", "Marque C", "Marque D", "Marque E"]
+  // Marques déjà accompagnées (laisser vide pour masquer la section).
+  // Logos à déposer dans assets/logos/ (SVG ou PNG transparent). Sans fichier, le nom s'affiche.
+  brands: [
+    { name: "Manor",     logo: "assets/logos/manor.svg",     url: "https://www.manor.ch" },
+    { name: "Catrice",   logo: "assets/logos/catrice.svg",   url: "https://www.catrice.eu/fr-ch" },
+    { name: "essence",   logo: "assets/logos/essence.svg",   url: "https://www.essence.eu/fr-ch" },
+    { name: "Decathlon", logo: "assets/logos/decathlon.svg", url: "https://www.decathlon.ch/fr" }
+  ]
 };

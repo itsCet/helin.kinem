@@ -150,8 +150,16 @@
   .offer h3 { font-size: 1.6rem; margin: 16px 0 8px; }
   .offer p { font-size: .9rem; color: var(--muted); }
 
-  .brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 48px; font-family: var(--serif);
-            font-style: italic; font-size: clamp(1.5rem, 3vw, 2.1rem); color: var(--muted); }
+  .brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); justify-content: center; gap: 14px; }
+  .brand { height: 110px; border-radius: 24px; background: var(--white); border: 1px solid var(--line);
+           display: grid; place-items: center; padding: 22px 28px; text-decoration: none;
+           transition: transform .35s, box-shadow .35s; }
+  .brand:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .brand img { max-height: 48px; max-width: 100%; object-fit: contain; filter: grayscale(1) sepia(.35);
+               opacity: .75; transition: filter .4s, opacity .4s; }
+  .brand:hover img { filter: none; opacity: 1; }
+  .brand span { font-family: var(--serif); font-style: italic; font-size: 1.8rem; color: var(--mocha); }
+  @media (max-width: 560px) { .brands { grid-template-columns: repeat(2, 1fr); } .brand { height: 92px; padding: 16px; } }
 
   /* Contact */
   .contact { background: linear-gradient(160deg, var(--cocoa) 0%, var(--mocha) 100%); color: var(--bg); border-radius: 40px;
@@ -399,7 +407,13 @@
   $("ages").innerHTML = S.audience.ages.map(bar).join("");
   $("cities").innerHTML = S.audience.cities.map(bar).join("");
   if (!S.brands || !S.brands.length) $("brands").remove();
-  else $("brandList").innerHTML = S.brands.map(b => `<span>${esc(b)}</span>`).join("");
+  else $("brandList").innerHTML = S.brands.map(b => {
+    const name = esc(b.name || b);
+    // Logo si le fichier existe, sinon le nom en toutes lettres
+    const inner = b.logo ? `<img src="${b.logo}" alt="${name}" loading="lazy"
+        onerror="this.replaceWith(Object.assign(document.createElement('span'), { textContent: this.alt }))">` : `<span>${name}</span>`;
+    return b.url ? `<a class="brand" href="${b.url}" target="_blank" rel="noopener">${inner}</a>` : `<div class="brand">${inner}</div>`;
+  }).join("");
   if (brand) document.title = `${S.name} × ${brand}`;
 
   function render() {
