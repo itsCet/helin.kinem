@@ -7,7 +7,7 @@ window.SITE = {
   handle: "helin.kinem",
   instagram: "https://www.instagram.com/helin.kinem/",
   city: "Genève",
-  email: "contact@exemple.ch",          // À COMPLÉTER
+  email: "management.helinkinem@gmail.com",
   whatsapp: "",                          // ex. "41791234567" (optionnel)
 
   // Photo de profil + portfolio : déposer les fichiers dans assets/photos/
