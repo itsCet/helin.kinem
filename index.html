@@ -150,7 +150,7 @@
   .offer h3 { font-size: 1.6rem; margin: 16px 0 8px; }
   .offer p { font-size: .9rem; color: var(--muted); }
 
-  .brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); justify-content: center; gap: 14px; }
+  .brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); justify-content: center; gap: 14px; }
   .brand { height: 110px; border-radius: 24px; background: var(--white); border: 1px solid var(--line);
            display: grid; place-items: center; padding: 22px 28px; text-decoration: none;
            transition: transform .35s, box-shadow .35s; }
@@ -158,8 +158,12 @@
   .brand img { max-height: 62px; max-width: 100%; object-fit: contain; filter: grayscale(1) sepia(.35);
                opacity: .75; transition: filter .4s, opacity .4s; }
   .brand:hover img { filter: none; opacity: 1; }
+  .brand.tall { padding-block: 10px; }
+  .brand.tall img { max-height: 88px; }
   .brand span { font-family: var(--serif); font-style: italic; font-size: 1.8rem; color: var(--mocha); }
-  @media (max-width: 560px) { .brands { grid-template-columns: repeat(2, 1fr); } .brand { height: 92px; padding: 16px; } }
+  @media (max-width: 560px) { .brands { grid-template-columns: repeat(2, 1fr); } .brand { height: 92px; padding: 16px; }
+    .brand.tall { padding-block: 8px; } .brand.tall img { max-height: 74px; }
+    .brand:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 7px); justify-self: center; } }
 
   /* Contact */
   .contact { background: linear-gradient(160deg, var(--cocoa) 0%, var(--mocha) 100%); color: var(--bg); border-radius: 40px;
@@ -412,7 +416,8 @@
     // Logo si le fichier existe, sinon le nom en toutes lettres
     const inner = b.logo ? `<img src="${b.logo}" alt="${name}" loading="lazy"
         onerror="this.replaceWith(Object.assign(document.createElement('span'), { textContent: this.alt }))">` : `<span>${name}</span>`;
-    return b.url ? `<a class="brand" href="${b.url}" target="_blank" rel="noopener">${inner}</a>` : `<div class="brand">${inner}</div>`;
+    const cls = b.tall ? "brand tall" : "brand";
+    return b.url ? `<a class="${cls}" href="${b.url}" target="_blank" rel="noopener">${inner}</a>` : `<div class="${cls}">${inner}</div>`;
   }).join("");
   if (brand) document.title = `${S.name} × ${brand}`;
 

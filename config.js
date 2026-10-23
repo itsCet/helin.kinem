@@ -57,10 +57,12 @@ window.SITE = {
 
   // Marques déjà accompagnées (laisser vide pour masquer la section).
   // Logos à déposer dans assets/logos/ (SVG ou PNG transparent). Sans fichier, le nom s'affiche.
+  // tall: true agrandit un logo carré ou empilé.
   brands: [
     { name: "Manor",     logo: "assets/logos/manor.png",     url: "https://www.manor.ch" },
     { name: "Catrice",   logo: "assets/logos/catrice.png",   url: "https://www.catrice.eu/fr-ch" },
     { name: "essence",   logo: "assets/logos/essence.png",   url: "https://www.essence.eu/fr-ch" },
-    { name: "Decathlon", logo: "assets/logos/decathlon.png", url: "https://www.decathlon.ch/fr" }
+    { name: "Decathlon", logo: "assets/logos/decathlon.png", url: "https://www.decathlon.ch/fr" },
+    { name: "Joe & The Juice", logo: "assets/logos/joe-and-the-juice.png", url: "https://www.joejuice.com", tall: true }
   ]
 };
