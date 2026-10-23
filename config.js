@@ -13,12 +13,12 @@ window.SITE = {
   // Photo de profil + portfolio : déposer les fichiers dans assets/photos/
   portrait: "assets/photos/portrait.jpg",
   portfolio: [
-    { src: "assets/photos/01.jpg", tag: { fr: "Lifestyle", en: "Lifestyle" } },
-    { src: "assets/photos/02.jpg", tag: { fr: "Mode", en: "Fashion" } },
-    { src: "assets/photos/03.jpg", tag: { fr: "Beauté", en: "Beauty" } },
-    { src: "assets/photos/04.jpg", tag: { fr: "Genève", en: "Geneva" } },
-    { src: "assets/photos/05.jpg", tag: { fr: "Food", en: "Food" } },
-    { src: "assets/photos/06.jpg", tag: { fr: "Voyage", en: "Travel" } }
+    { src: "assets/photos/01.jpg", tag: { fr: "Mode", en: "Fashion" } },
+    { src: "assets/photos/02.jpg", tag: { fr: "Skincare", en: "Skincare" } },
+    { src: "assets/photos/03.jpg", tag: { fr: "Pilates", en: "Pilates" } },
+    { src: "assets/photos/04.jpg", tag: { fr: "Matcha", en: "Matcha" } },
+    { src: "assets/photos/05.jpg", tag: { fr: "New York", en: "New York" } },
+    { src: "assets/photos/06.jpg", tag: { fr: "Genève", en: "Geneva" } }
   ],
 
   // Chiffres clés — À COMPLÉTER avec les vraies stats Instagram
@@ -36,8 +36,8 @@ window.SITE = {
   },
 
   niches: {
-    fr: ["Lifestyle", "Mode", "Beauté", "Food & Cafés", "Voyage", "Genève"],
-    en: ["Lifestyle", "Fashion", "Beauty", "Food & Cafés", "Travel", "Geneva"]
+    fr: ["Mode", "Skincare", "Pilates & bien-être", "Matcha", "Lifestyle", "Genève ↔ New York"],
+    en: ["Fashion", "Skincare", "Pilates & wellness", "Matcha", "Lifestyle", "Geneva ↔ New York"]
   },
 
   offers: [

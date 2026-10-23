@@ -82,7 +82,7 @@
                            border-radius: 260px 260px 30px 30px; }
   .portrait { aspect-ratio: 4/5; border-radius: 240px 240px 22px 22px; overflow: hidden; position: relative;
               background: linear-gradient(170deg, var(--sky) 0%, var(--bg-2) 100%); }
-  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
   .portrait-bow { position: absolute; top: -34px; left: 50%; translate: -50% 0; font-size: 64px; z-index: 2;
                   filter: drop-shadow(0 6px 10px rgba(91,134,171,.25)); }
   .portrait .badge { position: absolute; left: 16px; bottom: 16px; background: var(--white); color: var(--ink);
@@ -190,6 +190,7 @@
   @media (max-width: 900px) {
     .hero-grid, .split { grid-template-columns: 1fr; }
     .portrait-wrap { max-width: 400px; width: calc(100% - 28px); margin: 40px auto 0; }
+    .hero { padding-bottom: 56px; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .offers { grid-template-columns: repeat(2, 1fr); }
   }
@@ -344,14 +345,14 @@
       nav_cta: "Collaborer",
       for_brand: b => `Une proposition pour ${b}`,
       for_default: "Media kit · Créatrice de contenu",
-      lead: `Créatrice de contenu basée à ${S.city}. Des images soignées, une voix authentique et une communauté qui fait confiance — pour raconter votre marque avec élégance.`,
+      lead: `Créatrice de contenu basée à ${S.city}. Mode, skincare, pilates et matcha : un quotidien élégant, raconté avec sincérité à une communauté qui me fait confiance.`,
       cta_collab: "Travaillons ensemble", cta_work: "Voir le travail", scroll: "défiler",
-      marquee: ["Lifestyle", "Genève", "Mode", "Beauté", "Contenu authentique", "Suisse romande"],
+      marquee: ["Mode", "Skincare", "Pilates", "Matcha", "Genève", "New York state of mind"],
       stats_eyebrow: "En chiffres", stats_title: "Une audience <em>engagée</em>.",
       stats_date: d => `Données Instagram · ${d}`,
       about_eyebrow: "À propos", about_title: "Genève, vue de <em>l'intérieur</em>.",
-      about_p1: `Je partage un quotidien genevois entre adresses confidentielles, mode, beauté et escapades — avec un regard esthétique et une parole sincère.`,
-      about_p2: "Mon audience me suit pour des recommandations auxquelles elle peut se fier. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
+      about_p1: `Un cours de pilates au réveil, un matcha latte dans mon café préféré, une routine skincare bien rodée : je partage un quotidien genevois élégant, avec New York toujours en tête.`,
+      about_p2: "Mode, beauté, bien-être : mon audience me suit pour des recommandations sincères. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
       aud_title: "Qui me suit", aud_gender: "Genre", aud_age: "Âge", aud_cities: "Villes principales",
       women: "Femmes", men: "Hommes",
       work_eyebrow: "Portfolio", work_title: "Une signature <em>visuelle</em>.", see_ig: "Voir tout sur Instagram ↗",
@@ -368,14 +369,14 @@
       nav_cta: "Collaborate",
       for_brand: b => `A proposal for ${b}`,
       for_default: "Media kit · Content creator",
-      lead: `Content creator based in ${S.city}. Considered visuals, an authentic voice and a community that trusts her — to tell your brand's story with elegance.`,
+      lead: `Content creator based in ${S.city}. Fashion, skincare, pilates and matcha: an elegant everyday life, shared honestly with a community that trusts me.`,
       cta_collab: "Let's work together", cta_work: "See the work", scroll: "scroll",
-      marquee: ["Lifestyle", "Geneva", "Fashion", "Beauty", "Authentic content", "Switzerland"],
+      marquee: ["Fashion", "Skincare", "Pilates", "Matcha", "Geneva", "New York state of mind"],
       stats_eyebrow: "By the numbers", stats_title: "An <em>engaged</em> audience.",
       stats_date: d => `Instagram data · ${d}`,
       about_eyebrow: "About", about_title: "Geneva, from the <em>inside</em>.",
-      about_p1: "I share Geneva life through hidden addresses, fashion, beauty and getaways — with an aesthetic eye and an honest voice.",
-      about_p2: "My audience follows me for recommendations they can trust. Every collaboration is designed to fit naturally into my world.",
+      about_p1: "A morning pilates class, a matcha latte at my favourite café, a well-tuned skincare routine: I share an elegant Geneva life, with New York always on my mind.",
+      about_p2: "Fashion, beauty, wellness: my audience follows me for honest recommendations. Every collaboration is designed to fit naturally into my world.",
       aud_title: "Who follows me", aud_gender: "Gender", aud_age: "Age", aud_cities: "Top cities",
       women: "Women", men: "Men",
       work_eyebrow: "Portfolio", work_title: "A <em>visual</em> signature.", see_ig: "See everything on Instagram ↗",
