@@ -61,6 +61,6 @@ window.SITE = {
     { name: "Manor",     logo: "assets/logos/manor.png",     url: "https://www.manor.ch" },
     { name: "Catrice",   logo: "assets/logos/catrice.png",   url: "https://www.catrice.eu/fr-ch" },
     { name: "essence",   logo: "assets/logos/essence.png",   url: "https://www.essence.eu/fr-ch" },
-    { name: "Decathlon", logo: "assets/logos/decathlon.svg", url: "https://www.decathlon.ch/fr" }
+    { name: "Decathlon", logo: "assets/logos/decathlon.png", url: "https://www.decathlon.ch/fr" }
   ]
 };
