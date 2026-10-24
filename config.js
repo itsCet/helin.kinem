@@ -79,7 +79,7 @@ window.SITE = {
   ],
 
   // Audience par réseau (tableaux de bord Instagram et TikTok, octobre 2026), en %.
-  // Un bouton par réseau permet de basculer ; « languages » est facultatif.
+  // Un bouton par réseau permet de basculer.
   audience: [
     { name: "Instagram",
       women: 89.5,
@@ -88,11 +88,6 @@ window.SITE = {
         { fr: "Suisse", en: "Switzerland", v: 27.0 }, { fr: "France", en: "France", v: 26.1 },
         { fr: "Allemagne", en: "Germany", v: 11.0 }, { fr: "Turquie", en: "Türkiye", v: 7.2 },
         { fr: "Algérie", en: "Algeria", v: 3.2 }
-      ],
-      languages: [
-        { fr: "Français", en: "French", v: 54.6 }, { fr: "Allemand", en: "German", v: 12.5 },
-        { fr: "Turc", en: "Turkish", v: 10.5 }, { fr: "Anglais", en: "English", v: 9.3 },
-        { fr: "Arabe", en: "Arabic", v: 3.2 }
       ] },
     { name: "TikTok",
       women: 88,
