@@ -22,7 +22,8 @@ window.SITE = {
     { video: "assets/videos/event-geneva-open.mp4", poster: "assets/videos/event-geneva-open.jpg",
       tag: { fr: "Événement · Gonet Geneva Open", en: "Event · Gonet Geneva Open" } },
     { src: "assets/photos/03.jpg", tag: { fr: "Pilates", en: "Pilates" } },
-    { src: "assets/photos/04.jpg", tag: { fr: "Matcha", en: "Matcha" } }
+    { video: "assets/videos/matcha-test.mp4", poster: "assets/videos/matcha-test.jpg",
+      tag: { fr: "Matcha · test à Genève", en: "Matcha · tasting in Geneva" } }
   ],
 
   // Chiffres clés — À COMPLÉTER avec les vraies stats Instagram

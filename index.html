@@ -436,6 +436,10 @@
   }).join("");
   if (brand) document.title = `${S.name} × ${brand}`;
 
+  const videoIO = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) en.target.play().catch(() => {}); else en.target.pause();
+  }), { threshold: 0.25 });
+
   function render() {
     const t = T[lang];
     document.documentElement.lang = lang;
@@ -460,12 +464,14 @@
 
     $("grid").innerHTML = S.portfolio.map(p => p.video
       ? `<figure class="tile video rv">
-           <video src="${p.video}" poster="${p.poster || ""}" autoplay muted loop playsinline preload="metadata"></video>
+           <video src="${p.video}" poster="${p.poster || ""}" muted loop playsinline preload="none"></video>
            <span class="play">▶ Reel</span><span class="sound" aria-hidden="true">🔇</span>
            <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`
       : `<figure class="tile rv"><div class="ph">${esc(p.tag[lang])}</div>
            <img src="${p.src}" alt="${esc(p.tag[lang])}" loading="lazy" onerror="this.remove()">
            <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`).join("");
+    // Les vidéos ne se chargent et ne jouent que lorsqu'elles sont à l'écran
+    document.querySelectorAll(".tile.video video").forEach(v => videoIO.observe(v));
     // Toucher une vidéo active ou coupe le son
     document.querySelectorAll(".tile.video").forEach(t => t.addEventListener("click", () => {
       const v = t.querySelector("video");
