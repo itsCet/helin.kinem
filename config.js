@@ -39,23 +39,44 @@ window.SITE = {
     { value: 612800, label: { fr: "J'aime sur TikTok", en: "TikTok likes" } }
   ],
 
-  // Statistiques Instagram des 30 derniers jours (export Instagram du 24 oct. 2026)
-  insta30: {
-    period: { fr: "24 sept. – 24 oct. 2026", en: "Sep 24 – Oct 24, 2026" },
-    main: [
-      { value: 227000, label: { fr: "Vues de reels", en: "Reel views" } },
-      { value: 144000, label: { fr: "Personnes touchées", en: "Accounts reached" } },
-      { value: 9870,   label: { fr: "Vues moyennes par reel", en: "Avg. views per reel" }, approx: true },
-      { value: 23,     label: { fr: "Reels publiés", en: "Reels published" } }
-    ],
-    interactions: [
-      { value: 6000, text: { fr: "6K", en: "6K" }, label: { fr: "j'aime", en: "likes" } },
-      { value: 1200, text: { fr: "1,2K", en: "1.2K" }, label: { fr: "partages", en: "shares" } },
-      { value: 439,  label: { fr: "enregistrements", en: "saves" } },
-      { value: 287,  label: { fr: "commentaires", en: "comments" } },
-      { value: 111,  label: { fr: "republications", en: "reposts" } }
-    ]
-  },
+  // Statistiques du dernier mois, par réseau (exports Instagram et TikTok d'octobre 2026).
+  // Le total des vues (premier chiffre de chaque réseau) est additionné dans le titre du bloc.
+  // approx: true ajoute « ≈ » ; text remplace le nombre affiché (ex. arrondis de l'app).
+  lastMonth: [
+    { name: "Instagram",
+      period: { fr: "24 sept. – 24 oct. 2026", en: "Sep 24 – Oct 24, 2026" },
+      note: { fr: "<b>144K personnes</b> ont vu ses reels en un mois, soit près de <b>28 fois</b> sa communauté Instagram.",
+              en: "<b>144K people</b> watched her reels in one month, nearly <b>28 times</b> her Instagram community." },
+      main: [
+        { value: 227000, label: { fr: "Vues de reels", en: "Reel views" } },
+        { value: 144000, label: { fr: "Personnes touchées", en: "Accounts reached" } },
+        { value: 9870,   label: { fr: "Vues moyennes par reel", en: "Avg. views per reel" }, approx: true },
+        { value: 23,     label: { fr: "Reels publiés", en: "Reels published" } }
+      ],
+      chips: [
+        { text: { fr: "6K", en: "6K" },     label: { fr: "j'aime", en: "likes" } },
+        { text: { fr: "1,2K", en: "1.2K" }, label: { fr: "partages", en: "shares" } },
+        { value: 439, label: { fr: "enregistrements", en: "saves" } },
+        { value: 287, label: { fr: "commentaires", en: "comments" } },
+        { value: 111, label: { fr: "republications", en: "reposts" } }
+      ] },
+    { name: "TikTok",
+      period: { fr: "26 sept. – 23 oct. 2026", en: "Sep 26 – Oct 23, 2026" },
+      note: { fr: "Des vues en hausse de <b>+157 %</b> et des visites de profil en hausse de <b>+617 %</b> par rapport au mois précédent.",
+              en: "Views up <b>+157%</b> and profile visits up <b>+617%</b> compared with the previous month." },
+      main: [
+        { value: 297000, label: { fr: "Vues de publications", en: "Post views" } },
+        { value: 14400,  label: { fr: "J'aime", en: "Likes" } },
+        { value: 13200,  label: { fr: "Vues du profil", en: "Profile views" } },
+        { text: { fr: "3K", en: "3K" }, label: { fr: "Partages", en: "Shares" } }
+      ],
+      chips: [
+        { value: 400, label: { fr: "commentaires", en: "comments" } },
+        { text: { fr: "↑ 157 %", en: "↑ 157%" }, label: { fr: "de vues", en: "views" } },
+        { text: { fr: "↑ 72 %", en: "↑ 72%" },   label: { fr: "de partages", en: "shares" } },
+        { text: { fr: "↑ 57 %", en: "↑ 57%" },   label: { fr: "de j'aime", en: "likes" } }
+      ] }
+  ],
 
   // Réseaux sociaux (carte « Mes réseaux »). Le contact passe uniquement par e-mail.
   socials: [
