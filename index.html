@@ -106,6 +106,22 @@
   .stat:nth-child(3) { background: var(--latte); border-color: var(--latte); }
   .stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; }
   .stat span { font-size: .85rem; color: var(--muted); }
+  .i30 { margin-top: 56px; background: var(--white); border: 1px solid var(--line); border-radius: 32px; padding: clamp(24px, 4vw, 44px);
+         box-shadow: var(--shadow); }
+  .i30-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; }
+  .i30-head h3 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); }
+  .i30-period { font-size: .85rem; color: var(--muted); }
+  .i30-hl { margin: 10px 0 26px; color: var(--muted); max-width: 40em; }
+  .i30-hl b { color: var(--accent-deep); font-weight: 600; }
+  .i30-main { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .i30-main div { background: var(--bg); border-radius: 20px; padding: 20px 18px; }
+  .i30-main div:nth-child(1), .i30-main div:nth-child(2) { background: var(--sky); }
+  .i30-main b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; }
+  .i30-main span { font-size: .82rem; color: var(--muted); }
+  .i30-int { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .i30-int span { background: var(--bg-2); border-radius: 99px; padding: 6px 14px; font-size: .85rem; }
+  .i30-int b { font-weight: 600; }
+  @media (max-width: 900px) { .i30-main { grid-template-columns: repeat(2, 1fr); } }
   .note { font-size: .75rem; color: var(--muted); margin-top: 18px; text-align: center; }
 
   /* About + audience */
@@ -288,6 +304,15 @@
     <h2 class="rv" data-t="stats_title"></h2>
     <div class="stats rv" id="statsGrid"></div>
     <p class="note" id="statsDate"></p>
+    <div class="i30 rv" id="i30">
+      <div class="i30-head">
+        <h3 data-t="i30_title"></h3>
+        <span class="i30-period" id="i30Period"></span>
+      </div>
+      <p class="i30-hl" id="i30Hl"></p>
+      <div class="i30-main" id="i30Main"></div>
+      <div class="i30-int" id="i30Int"></div>
+    </div>
   </div>
 </section>
 
@@ -378,6 +403,8 @@
       about_p1: `Un cours de pilates au réveil, un matcha latte dans mon café préféré, une routine skincare bien rodée : je partage un quotidien genevois élégant, avec New York toujours en tête.`,
       about_p2: "Mode, beauté, bien-être : mon audience me suit pour des recommandations sincères. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
       aud_title: "Mes réseaux", followers: "abonnés",
+      i30_title: "Instagram · 30 derniers jours",
+      i30_hl: (r, x) => `<b>${r} personnes</b> ont vu ses reels en un mois, soit près de <b>${x} fois</b> sa communauté Instagram.`,
       work_eyebrow: "Portfolio", work_title: "Une signature <em>visuelle</em>.", see_ig: "Voir tout sur Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "Ce que je peux créer pour vous.",
       brands_eyebrow: "Elles m'ont fait confiance",
@@ -401,6 +428,8 @@
       about_p1: "A morning pilates class, a matcha latte at my favourite café, a well-tuned skincare routine: I share an elegant Geneva life, with New York always on my mind.",
       about_p2: "Fashion, beauty, wellness: my audience follows me for honest recommendations. Every collaboration is designed to fit naturally into my world.",
       aud_title: "My platforms", followers: "followers",
+      i30_title: "Instagram · last 30 days",
+      i30_hl: (r, x) => `<b>${r} people</b> watched her reels in one month, nearly <b>${x} times</b> her Instagram community.`,
       work_eyebrow: "Portfolio", work_title: "A <em>visual</em> signature.", see_ig: "See everything on Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "What I can create for you.",
       brands_eyebrow: "Brands that trusted me",
@@ -465,6 +494,15 @@
     $("statsGrid").innerHTML = S.stats.map((s, i) =>
       `<div class="stat"><b data-i="${i}">${fmt(s.value, s.decimals)}${s.suffix || ""}</b><span>${s.label[lang]}</span></div>`).join("");
     $("statsDate").textContent = t.stats_date(S.statsAsOf[lang]);
+    const I = S.insta30;
+    if (I) {
+      const reach = I.main[1].value, ig = S.socials.find(n => n.name === "Instagram").followers;
+      $("i30Period").textContent = I.period[lang];
+      $("i30Hl").innerHTML = t.i30_hl(fmt(reach), Math.round(reach / ig));
+      $("i30Main").innerHTML = I.main.map(m =>
+        `<div><b data-v="${m.value}" data-p="${m.approx ? "≈ " : ""}">${m.approx ? "≈ " : ""}${fmt(m.value)}</b><span>${m.label[lang]}</span></div>`).join("");
+      $("i30Int").innerHTML = I.interactions.map(m => `<span><b>${m.text ? m.text[lang] : fmt(m.value)}</b> ${m.label[lang]}</span>`).join("");
+    } else $("i30").remove();
     $("socialList").innerHTML = S.socials.map(n =>
       `<a class="social" href="${n.url}" target="_blank" rel="noopener">
          <span class="pf">${n.name} ↗</span><span class="ct">${fmt(n.followers)}<small>${t.followers}</small></span>
@@ -494,11 +532,11 @@
   }
 
   // Compteurs animés
-  function countUp(el) {
-    const s = S.stats[el.dataset.i], start = performance.now(), dur = 1600;
+  function countUp(el, s = S.stats[el.dataset.i]) {
+    const start = performance.now(), dur = 1600;
     const step = now => {
       const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(s.value * e, s.decimals) + (s.suffix || "");
+      el.textContent = (s.prefix || "") + fmt(s.value * e, s.decimals) + (s.suffix || "");
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -509,7 +547,8 @@
     const el = en.target;
     el.classList.add("in");
     el.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%");
-    if (el.classList.contains("stats")) el.querySelectorAll("b[data-i]").forEach(countUp);
+    if (el.classList.contains("stats")) el.querySelectorAll("b[data-i]").forEach(b => countUp(b));
+    if (el.id === "i30") el.querySelectorAll("b[data-v]").forEach(b => countUp(b, { value: +b.dataset.v, prefix: b.dataset.p }));
     io.unobserve(el);
   }), { threshold: 0.15 });
   function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el)); }

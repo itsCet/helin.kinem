@@ -39,6 +39,24 @@ window.SITE = {
     { value: 612800, label: { fr: "J'aime sur TikTok", en: "TikTok likes" } }
   ],
 
+  // Statistiques Instagram des 30 derniers jours (export Instagram du 24 oct. 2026)
+  insta30: {
+    period: { fr: "24 sept. – 24 oct. 2026", en: "Sep 24 – Oct 24, 2026" },
+    main: [
+      { value: 227000, label: { fr: "Vues de reels", en: "Reel views" } },
+      { value: 144000, label: { fr: "Personnes touchées", en: "Accounts reached" } },
+      { value: 9870,   label: { fr: "Vues moyennes par reel", en: "Avg. views per reel" }, approx: true },
+      { value: 23,     label: { fr: "Reels publiés", en: "Reels published" } }
+    ],
+    interactions: [
+      { value: 6000, text: { fr: "6K", en: "6K" }, label: { fr: "j'aime", en: "likes" } },
+      { value: 1200, text: { fr: "1,2K", en: "1.2K" }, label: { fr: "partages", en: "shares" } },
+      { value: 439,  label: { fr: "enregistrements", en: "saves" } },
+      { value: 287,  label: { fr: "commentaires", en: "comments" } },
+      { value: 111,  label: { fr: "republications", en: "reposts" } }
+    ]
+  },
+
   // Réseaux sociaux (carte « Mes réseaux »). Le contact passe uniquement par e-mail.
   socials: [
     { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
