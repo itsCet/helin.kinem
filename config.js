@@ -78,21 +78,31 @@ window.SITE = {
       ] }
   ],
 
-  // Audience Instagram (tableau de bord Instagram → Audience, octobre 2026), en %
-  audience: {
-    women: 89.5,
-    ages: [ ["13–17", 1.0], ["18–24", 11.0], ["25–34", 61.7], ["35–44", 18.3], ["45–54", 5.1], ["55–64", 1.8], ["65+", 1.1] ],
-    countries: [
-      { fr: "Suisse", en: "Switzerland", v: 27.0 }, { fr: "France", en: "France", v: 26.1 },
-      { fr: "Allemagne", en: "Germany", v: 11.0 }, { fr: "Turquie", en: "Türkiye", v: 7.2 },
-      { fr: "Algérie", en: "Algeria", v: 3.2 }
-    ],
-    languages: [
-      { fr: "Français", en: "French", v: 54.6 }, { fr: "Allemand", en: "German", v: 12.5 },
-      { fr: "Turc", en: "Turkish", v: 10.5 }, { fr: "Anglais", en: "English", v: 9.3 },
-      { fr: "Arabe", en: "Arabic", v: 3.2 }
-    ]
-  },
+  // Audience par réseau (tableaux de bord Instagram et TikTok, octobre 2026), en %.
+  // Un bouton par réseau permet de basculer ; « languages » est facultatif.
+  audience: [
+    { name: "Instagram",
+      women: 89.5,
+      ages: [ ["13–17", 1.0], ["18–24", 11.0], ["25–34", 61.7], ["35–44", 18.3], ["45–54", 5.1], ["55–64", 1.8], ["65+", 1.1] ],
+      countries: [
+        { fr: "Suisse", en: "Switzerland", v: 27.0 }, { fr: "France", en: "France", v: 26.1 },
+        { fr: "Allemagne", en: "Germany", v: 11.0 }, { fr: "Turquie", en: "Türkiye", v: 7.2 },
+        { fr: "Algérie", en: "Algeria", v: 3.2 }
+      ],
+      languages: [
+        { fr: "Français", en: "French", v: 54.6 }, { fr: "Allemand", en: "German", v: 12.5 },
+        { fr: "Turc", en: "Turkish", v: 10.5 }, { fr: "Anglais", en: "English", v: 9.3 },
+        { fr: "Arabe", en: "Arabic", v: 3.2 }
+      ] },
+    { name: "TikTok",
+      women: 88,
+      ages: [ ["18–24", 21.3], ["25–34", 63.0], ["35–44", 9.9], ["45–54", 3.7], ["55+", 2.1] ],
+      countries: [
+        { fr: "France", en: "France", v: 27.5 }, { fr: "Suisse", en: "Switzerland", v: 26.1 },
+        { fr: "Allemagne", en: "Germany", v: 13.5 }, { fr: "Belgique", en: "Belgium", v: 3.5 },
+        { fr: "Pays-Bas", en: "Netherlands", v: 2.1 }
+      ] }
+  ],
 
   // Réseaux sociaux (carte « Mes réseaux »). Le contact passe uniquement par e-mail.
   socials: [
