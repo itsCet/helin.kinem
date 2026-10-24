@@ -123,6 +123,14 @@
   .bar em { font-style: normal; text-align: right; color: var(--muted); }
   .gender { display: flex; height: 12px; border-radius: 12px; overflow: hidden; margin: 6px 0 8px; background: var(--bg-2); }
   .gender div { background: linear-gradient(90deg, var(--sky-2), var(--accent)); width: 0; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .social { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px; padding: 18px 0;
+            border-top: 1px solid var(--line); text-decoration: none; transition: padding .3s; }
+  .social:first-child { border-top: 0; padding-top: 4px; }
+  .social:hover { padding-left: 6px; }
+  .social .pf { font-family: var(--serif); font-size: 1.6rem; line-height: 1.1; }
+  .social .hd { font-size: .82rem; color: var(--muted); }
+  .social .ct { grid-row: 1 / span 2; grid-column: 2; text-align: right; font-family: var(--serif); font-size: 2rem; line-height: 1; }
+  .social .ct small { display: block; font-family: var(--sans); font-size: .75rem; color: var(--muted); margin-top: 4px; }
   .aud .sub { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--accent-deep); margin-top: 20px; }
 
   /* Portfolio */
@@ -293,15 +301,7 @@
     </div>
     <div class="aud rv">
       <h3 data-t="aud_title"></h3>
-      <div class="sub" style="margin-top:0" data-t="aud_gender"></div>
-      <div class="gender"><div id="genderBar"></div></div>
-      <div style="display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted)">
-        <span id="women"></span><span id="men"></span>
-      </div>
-      <div class="sub" data-t="aud_age"></div>
-      <div id="ages"></div>
-      <div class="sub" data-t="aud_cities"></div>
-      <div id="cities"></div>
+      <div id="socialList"></div>
     </div>
   </div>
 </section>
@@ -341,7 +341,7 @@
       <div class="ctas" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center">
         <a class="btn primary" id="mailBtn" data-t="contact_mail"></a>
         <a class="btn ghost" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn ghost" id="igBtn" target="_blank" rel="noopener">Instagram</a>
+        <span id="socialBtns" style="display:contents"></span>
       </div>
     </div>
   </div>
@@ -370,13 +370,12 @@
       lead: `Créatrice de contenu basée à ${S.city}. Mode, skincare, pilates et matcha : un quotidien élégant, raconté avec sincérité à une communauté qui me fait confiance.`,
       cta_collab: "Travaillons ensemble", cta_work: "Voir le travail", scroll: "défiler",
       marquee: ["Mode", "Skincare", "Pilates", "Matcha", "Genève", "New York state of mind"],
-      stats_eyebrow: "En chiffres", stats_title: "Une audience <em>engagée</em>.",
-      stats_date: d => `Données Instagram · ${d}`,
+      stats_eyebrow: "En chiffres", stats_title: "Une communauté <em>engagée</em>.",
+      stats_date: d => `Chiffres relevés en ${d} · Instagram, TikTok, YouTube`,
       about_eyebrow: "À propos", about_title: "Genève, vue de <em>l'intérieur</em>.",
       about_p1: `Un cours de pilates au réveil, un matcha latte dans mon café préféré, une routine skincare bien rodée : je partage un quotidien genevois élégant, avec New York toujours en tête.`,
       about_p2: "Mode, beauté, bien-être : mon audience me suit pour des recommandations sincères. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
-      aud_title: "Qui me suit", aud_gender: "Genre", aud_age: "Âge", aud_cities: "Villes principales",
-      women: "Femmes", men: "Hommes",
+      aud_title: "Mes réseaux", followers: "abonnés",
       work_eyebrow: "Portfolio", work_title: "Une signature <em>visuelle</em>.", see_ig: "Voir tout sur Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "Ce que je peux créer pour vous.",
       brands_eyebrow: "Elles m'ont fait confiance",
@@ -394,13 +393,12 @@
       lead: `Content creator based in ${S.city}. Fashion, skincare, pilates and matcha: an elegant everyday life, shared honestly with a community that trusts me.`,
       cta_collab: "Let's work together", cta_work: "See the work", scroll: "scroll",
       marquee: ["Fashion", "Skincare", "Pilates", "Matcha", "Geneva", "New York state of mind"],
-      stats_eyebrow: "By the numbers", stats_title: "An <em>engaged</em> audience.",
-      stats_date: d => `Instagram data · ${d}`,
+      stats_eyebrow: "By the numbers", stats_title: "An <em>engaged</em> community.",
+      stats_date: d => `Figures as of ${d} · Instagram, TikTok, YouTube`,
       about_eyebrow: "About", about_title: "Geneva, from the <em>inside</em>.",
       about_p1: "A morning pilates class, a matcha latte at my favourite café, a well-tuned skincare routine: I share an elegant Geneva life, with New York always on my mind.",
       about_p2: "Fashion, beauty, wellness: my audience follows me for honest recommendations. Every collaboration is designed to fit naturally into my world.",
-      aud_title: "Who follows me", aud_gender: "Gender", aud_age: "Age", aud_cities: "Top cities",
-      women: "Women", men: "Men",
+      aud_title: "My platforms", followers: "followers",
       work_eyebrow: "Portfolio", work_title: "A <em>visual</em> signature.", see_ig: "See everything on Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "What I can create for you.",
       brands_eyebrow: "Brands that trusted me",
@@ -415,8 +413,9 @@
 
   const $ = id => document.getElementById(id);
   const fmt = (n, d = 0) => {
-    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(".0", "") + "M";
-    if (n >= 1e4) return (n / 1e3).toFixed(1).replace(".0", "") + "K";
+    const short = (v, u) => v.toFixed(1).replace(".0", "").replace(".", lang === "fr" ? "," : ".") + u;
+    if (n >= 1e6) return short(n / 1e6, "M");
+    if (n >= 1e4) return short(n / 1e3, "K");
     return n.toLocaleString(lang === "fr" ? "fr-CH" : "en-GB", { minimumFractionDigits: d, maximumFractionDigits: d });
   };
   const bar = ([label, v]) =>
@@ -428,11 +427,9 @@
   const [first, ...rest] = S.name.split(" ");
   $("first").textContent = first; $("last").textContent = rest.join(" ");
   $("portrait").src = S.portrait; $("portrait").alt = S.name;
-  $("igLink").href = $("igBtn").href = S.instagram;
+  $("igLink").href = S.instagram;
   if (S.whatsapp) $("waBtn").href = "https://wa.me/" + S.whatsapp; else $("waBtn").remove();
   $("year").textContent = new Date().getFullYear();
-  $("ages").innerHTML = S.audience.ages.map(bar).join("");
-  $("cities").innerHTML = S.audience.cities.map(bar).join("");
   if (!S.brands || !S.brands.length) $("brands").remove();
   else $("brandList").innerHTML = S.brands.map(b => {
     const name = esc(b.name || b);
@@ -464,11 +461,15 @@
     $("marquee").innerHTML = line + line;
 
     $("statsGrid").innerHTML = S.stats.map((s, i) =>
-      `<div class="stat"><b data-i="${i}">${fmt(s.value, s.decimals)}${s.suffix}</b><span>${s.label[lang]}</span></div>`).join("");
-    $("statsDate").textContent = t.stats_date(new Date().toLocaleDateString(lang === "fr" ? "fr-CH" : "en-GB", { month: "long", year: "numeric" }));
+      `<div class="stat"><b data-i="${i}">${fmt(s.value, s.decimals)}${s.suffix || ""}</b><span>${s.label[lang]}</span></div>`).join("");
+    $("statsDate").textContent = t.stats_date(S.statsAsOf[lang]);
+    $("socialList").innerHTML = S.socials.map(n =>
+      `<a class="social" href="${n.url}" target="_blank" rel="noopener">
+         <span class="pf">${n.name} ↗</span><span class="ct">${fmt(n.followers)}<small>${t.followers}</small></span>
+         <span class="hd">${esc(n.handle)}${n.extra ? ` · ${fmt(n.extra.value)} ${n.extra.label[lang]}` : ""}</span></a>`).join("");
+    $("socialBtns").innerHTML = S.socials.map(n =>
+      `<a class="btn ghost" href="${n.url}" target="_blank" rel="noopener">${n.name}</a>`).join("");
     $("chips").innerHTML = S.niches[lang].map(n => `<span class="chip">${esc(n)}</span>`).join("");
-    $("women").textContent = `${t.women} ${S.audience.women}%`;
-    $("men").textContent = `${t.men} ${100 - S.audience.women}%`;
 
     $("grid").innerHTML = S.portfolio.map(p => p.video
       ? `<figure class="tile video rv">
@@ -496,7 +497,7 @@
     const s = S.stats[el.dataset.i], start = performance.now(), dur = 1600;
     const step = now => {
       const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(s.value * e, s.decimals) + s.suffix;
+      el.textContent = fmt(s.value * e, s.decimals) + (s.suffix || "");
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -507,7 +508,6 @@
     const el = en.target;
     el.classList.add("in");
     el.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%");
-    if (el.id === "about" || el.classList.contains("aud")) $("genderBar").style.width = S.audience.women + "%";
     if (el.classList.contains("stats")) el.querySelectorAll("b[data-i]").forEach(countUp);
     io.unobserve(el);
   }), { threshold: 0.15 });

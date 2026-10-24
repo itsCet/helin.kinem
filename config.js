@@ -1,6 +1,5 @@
 // ─────────────────────────────────────────────────────────────
 //  Tout le contenu du site se modifie ici.
-//  Les valeurs marquées « À COMPLÉTER » sont des exemples.
 // ─────────────────────────────────────────────────────────────
 window.SITE = {
   name: "Helin Kinem",
@@ -32,19 +31,22 @@ window.SITE = {
       tag: { fr: "Makeup · Rhode chez Sephora", en: "Makeup · Rhode at Sephora" } }
   ],
 
-  // Chiffres clés — À COMPLÉTER avec les vraies stats Instagram
+  // Chiffres clés (relevés sur les profils en octobre 2026)
+  statsAsOf: { fr: "octobre 2026", en: "October 2026" },
   stats: [
-    { value: 12500, suffix: "",  label: { fr: "Abonnés", en: "Followers" } },
-    { value: 6.4,   suffix: "%", label: { fr: "Taux d'engagement", en: "Engagement rate" }, decimals: 1 },
-    { value: 85000, suffix: "",  label: { fr: "Vues moyennes / Reel", en: "Avg. views / Reel" } },
-    { value: 78,    suffix: "%", label: { fr: "Audience en Suisse", en: "Audience in Switzerland" } }
+    { value: 10814,  label: { fr: "Communauté totale", en: "Total community" } },
+    { value: 5180,   label: { fr: "Abonnés Instagram", en: "Instagram followers" } },
+    { value: 5336,   label: { fr: "Followers TikTok", en: "TikTok followers" } },
+    { value: 612800, label: { fr: "J'aime sur TikTok", en: "TikTok likes" } }
   ],
 
-  audience: {
-    women: 72,                                            // % — À COMPLÉTER
-    ages: [ ["18–24", 28], ["25–34", 46], ["35–44", 18], ["45+", 8] ],
-    cities: [ ["Genève", 41], ["Lausanne", 14], ["Zurich", 9], ["Paris", 7] ]
-  },
+  // Réseaux sociaux (carte « Mes réseaux » + boutons de contact)
+  socials: [
+    { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
+    { name: "TikTok",    handle: "@helinkinem",  url: "https://www.tiktok.com/@helinkinem",    followers: 5336,
+      extra: { value: 612800, label: { fr: "j'aime", en: "likes" } } },
+    { name: "YouTube",   handle: "@HelinKinem",  url: "https://www.youtube.com/@HelinKinem",   followers: 298 }
+  ],
 
   niches: {
     fr: ["Mode", "Skincare", "Pilates & bien-être", "Matcha", "Lifestyle", "Genève ↔ New York"],
