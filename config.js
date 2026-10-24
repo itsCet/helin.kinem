@@ -17,9 +17,10 @@ window.SITE = {
     { src: "assets/photos/01.jpg", tag: { fr: "Mode", en: "Fashion" } },
     { video: "assets/videos/food-gran-caffe.mp4", poster: "assets/videos/food-gran-caffe.jpg",
       tag: { fr: "Food · Gran Caffè, Genève", en: "Food · Gran Caffè, Geneva" } },
+    { video: "assets/videos/spot-cookly.mp4", poster: "assets/videos/spot-cookly.jpg",
+      tag: { fr: "Spot · Cookly, Genève", en: "Spot · Cookly, Geneva" } },
     { src: "assets/photos/03.jpg", tag: { fr: "Pilates", en: "Pilates" } },
     { src: "assets/photos/04.jpg", tag: { fr: "Matcha", en: "Matcha" } },
-    { src: "assets/photos/05.jpg", tag: { fr: "New York", en: "New York" } },
     { src: "assets/photos/02.jpg", tag: { fr: "Skincare", en: "Skincare" } }
   ],
 
