@@ -24,7 +24,9 @@ window.SITE = {
     { video: "assets/videos/beaute-lash-lift.mp4", poster: "assets/videos/beaute-lash-lift.jpg",
       tag: { fr: "Beauté · Korean lash lift", en: "Beauty · Korean lash lift" } },
     { video: "assets/videos/matcha-test.mp4", poster: "assets/videos/matcha-test.jpg",
-      tag: { fr: "Matcha · test à Genève", en: "Matcha · tasting in Geneva" } }
+      tag: { fr: "Matcha · test à Genève", en: "Matcha · tasting in Geneva" } },
+    { video: "assets/videos/lifestyle-grwm.mp4", poster: "assets/videos/lifestyle-grwm.jpg",
+      tag: { fr: "Lifestyle · Get ready with me", en: "Lifestyle · Get ready with me" } }
   ],
 
   // Chiffres clés — À COMPLÉTER avec les vraies stats Instagram
