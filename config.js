@@ -11,14 +11,16 @@ window.SITE = {
   whatsapp: "",                          // ex. "41791234567" (optionnel)
 
   // Photo de profil + portfolio : déposer les fichiers dans assets/photos/
+  // Vidéo : { video: "assets/videos/xxx.mp4", poster: "assets/videos/xxx.jpg", tag: {...} }
   portrait: "assets/photos/portrait.jpg",
   portfolio: [
     { src: "assets/photos/01.jpg", tag: { fr: "Mode", en: "Fashion" } },
-    { src: "assets/photos/02.jpg", tag: { fr: "Skincare", en: "Skincare" } },
+    { video: "assets/videos/food-gran-caffe.mp4", poster: "assets/videos/food-gran-caffe.jpg",
+      tag: { fr: "Food · Gran Caffè, Genève", en: "Food · Gran Caffè, Geneva" } },
     { src: "assets/photos/03.jpg", tag: { fr: "Pilates", en: "Pilates" } },
     { src: "assets/photos/04.jpg", tag: { fr: "Matcha", en: "Matcha" } },
     { src: "assets/photos/05.jpg", tag: { fr: "New York", en: "New York" } },
-    { src: "assets/photos/06.jpg", tag: { fr: "Genève", en: "Geneva" } }
+    { src: "assets/photos/02.jpg", tag: { fr: "Skincare", en: "Skincare" } }
   ],
 
   // Chiffres clés — À COMPLÉTER avec les vraies stats Instagram

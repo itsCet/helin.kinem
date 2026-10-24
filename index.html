@@ -130,8 +130,13 @@
   .tile:nth-child(even) { background: linear-gradient(165deg, var(--bg-2) 0%, var(--sky) 100%); }
   .tile:nth-child(3n) { background: linear-gradient(165deg, var(--latte) 0%, var(--bg-2) 100%); }
   .tile:nth-child(3n+2) { translate: 0 40px; }
-  .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
-  .tile:hover img { transform: scale(1.05); }
+  .tile img, .tile video { position: relative; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+  .tile:hover img, .tile:hover video { transform: scale(1.05); }
+  .tile.video { cursor: pointer; }
+  .tile .sound { position: absolute; right: 12px; bottom: 12px; width: 34px; height: 34px; border-radius: 50%;
+                 background: var(--white); display: grid; place-items: center; font-size: .9rem; }
+  .tile .play { position: absolute; right: 12px; top: 12px; background: color-mix(in srgb, var(--white) 85%, transparent);
+                border-radius: 99px; padding: 4px 10px; font-size: .7rem; }
   .tile .tag { position: absolute; left: 14px; bottom: 14px; background: var(--white); color: var(--ink);
                border-radius: 99px; padding: 5px 14px; font-size: .78rem; }
   .tile .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--script);
@@ -453,10 +458,20 @@
     $("women").textContent = `${t.women} ${S.audience.women}%`;
     $("men").textContent = `${t.men} ${100 - S.audience.women}%`;
 
-    $("grid").innerHTML = S.portfolio.map(p =>
-      `<figure class="tile rv"><div class="ph">${esc(p.tag[lang])}</div>
-         <img src="${p.src}" alt="${esc(p.tag[lang])}" loading="lazy" onerror="this.remove()">
-         <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`).join("");
+    $("grid").innerHTML = S.portfolio.map(p => p.video
+      ? `<figure class="tile video rv">
+           <video src="${p.video}" poster="${p.poster || ""}" autoplay muted loop playsinline preload="metadata"></video>
+           <span class="play">▶ Reel</span><span class="sound" aria-hidden="true">🔇</span>
+           <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`
+      : `<figure class="tile rv"><div class="ph">${esc(p.tag[lang])}</div>
+           <img src="${p.src}" alt="${esc(p.tag[lang])}" loading="lazy" onerror="this.remove()">
+           <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`).join("");
+    // Toucher une vidéo active ou coupe le son
+    document.querySelectorAll(".tile.video").forEach(t => t.addEventListener("click", () => {
+      const v = t.querySelector("video");
+      v.muted = !v.muted; v.play();
+      t.querySelector(".sound").textContent = v.muted ? "🔇" : "🔊";
+    }));
     $("offerGrid").innerHTML = S.offers.map(o =>
       `<div class="offer rv"><div class="ic">${o.icon}</div><h3>${o.title[lang]}</h3><p>${o.text[lang]}</p></div>`).join("");
     observe();
