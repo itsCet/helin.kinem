@@ -106,6 +106,16 @@
   .stat:nth-child(3) { background: var(--latte); border-color: var(--latte); }
   .stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; }
   .stat span { font-size: .85rem; color: var(--muted); }
+  .au-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .au-sub { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--accent-deep); margin-bottom: 6px; }
+  .au-big { font-family: var(--serif); font-size: 3rem; line-height: 1.1; margin: 6px 0 10px; }
+  .au-big small { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+  .au-legend span::first-letter { text-transform: uppercase; }
+  .au-legend span { display: inline-block; }
+  .au-legend { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); }
+  .aud2 .bar { grid-template-columns: 78px 1fr 46px; gap: 10px; margin: 8px 0; font-size: .82rem; }
+  @media (max-width: 900px) { .au-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .au-grid { grid-template-columns: 1fr; gap: 22px; } }
   .lm-title { margin-top: 64px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
   .lm-title em { color: var(--accent-deep); }
   .i30 + .i30 { margin-top: 18px; }
@@ -311,6 +321,19 @@
       <h3 class="lm-title rv" id="lmTitle"></h3>
       <div id="lmCards"></div>
     </div>
+    <div class="i30 aud2 rv" id="audience">
+      <div class="i30-head"><h3 data-t="au_title"></h3><span class="i30-period">Instagram</span></div>
+      <p class="i30-hl" id="auHl"></p>
+      <div class="au-grid">
+        <div><div class="au-sub" data-t="au_gender"></div>
+          <div class="au-big" id="auWomen"></div>
+          <div class="gender"><div data-w=""></div></div>
+          <div class="au-legend"><span id="auW"></span><span id="auM"></span></div></div>
+        <div><div class="au-sub" data-t="au_age"></div><div id="auAges"></div></div>
+        <div><div class="au-sub" data-t="au_countries"></div><div id="auCountries"></div></div>
+        <div><div class="au-sub" data-t="au_languages"></div><div id="auLangs"></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -404,6 +427,9 @@
       aud_title: "Mes réseaux", followers: "abonnés",
       lm_title: v => `<em>${v} vues</em> en un mois sur Instagram et TikTok.`,
       lm_card: n => `${n} · dernier mois`,
+      au_title: "Qui me suit", au_gender: "Genre", au_age: "Âge", au_countries: "Pays", au_languages: "Langues",
+      au_women: "femmes", au_men: "hommes",
+      au_hl: (w, a, c) => `Une audience à <b>${w} féminine</b>, dont <b>${a} ont entre 25 et 34 ans</b>. <b>${c}</b> vit en Suisse ou en France.`,
       work_eyebrow: "Portfolio", work_title: "Une signature <em>visuelle</em>.", see_ig: "Voir tout sur Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "Ce que je peux créer pour vous.",
       brands_eyebrow: "Elles m'ont fait confiance",
@@ -429,6 +455,9 @@
       aud_title: "My platforms", followers: "followers",
       lm_title: v => `<em>${v} views</em> in one month on Instagram and TikTok.`,
       lm_card: n => `${n} · last month`,
+      au_title: "Who follows me", au_gender: "Gender", au_age: "Age", au_countries: "Countries", au_languages: "Languages",
+      au_women: "women", au_men: "men",
+      au_hl: (w, a, c) => `An audience that is <b>${w} female</b>, with <b>${a} aged 25 to 34</b>. <b>${c}</b> live in Switzerland or France.`,
       work_eyebrow: "Portfolio", work_title: "A <em>visual</em> signature.", see_ig: "See everything on Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "What I can create for you.",
       brands_eyebrow: "Brands that trusted me",
@@ -448,8 +477,9 @@
     if (n >= 1e4) return short(n / 1e3, "K");
     return n.toLocaleString(lang === "fr" ? "fr-CH" : "en-GB", { minimumFractionDigits: d, maximumFractionDigits: d });
   };
+  const pct = v => lang === "fr" ? v.toFixed(1).replace(".", ",") + " %" : v.toFixed(1) + "%";
   const bar = ([label, v]) =>
-    `<div class="bar"><span>${label}</span><div class="t"><div class="f" data-w="${v}"></div></div><em>${v}%</em></div>`;
+    `<div class="bar"><span>${label}</span><div class="t"><div class="f" data-w="${v}"></div></div><em>${pct(v)}</em></div>`;
   const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   // Contenu indépendant de la langue
@@ -507,6 +537,19 @@
           <div class="i30-int">${p.chips.map(m => `<span><b>${num(m)}</b> ${m.label[lang]}</span>`).join("")}</div>
         </div>`).join("");
     } else $("lastMonth").remove();
+    const A = S.audience;
+    if (A) {
+      const young = A.ages.find(a => a[0].startsWith("25"))[1];
+      const chf = A.countries.filter(c => c.en === "Switzerland" || c.en === "France").reduce((x, c) => x + c.v, 0);
+      $("auHl").innerHTML = t.au_hl(pct(A.women), pct(young), pct(chf));
+      $("auWomen").innerHTML = `${pct(A.women)} <small>${t.au_women}</small>`;
+      document.querySelector("#audience .gender div").dataset.w = A.women;
+      $("auW").textContent = `${t.au_women} ${pct(A.women)}`;
+      $("auM").textContent = `${t.au_men} ${pct(100 - A.women)}`;
+      $("auAges").innerHTML = A.ages.map(bar).join("");
+      $("auCountries").innerHTML = A.countries.map(c => bar([c[lang], c.v])).join("");
+      $("auLangs").innerHTML = A.languages.map(c => bar([c[lang], c.v])).join("");
+    } else $("audience").remove();
     $("socialList").innerHTML = S.socials.map(n =>
       `<a class="social" href="${n.url}" target="_blank" rel="noopener">
          <span class="pf">${n.name} ↗</span><span class="ct">${fmt(n.followers)}<small>${t.followers}</small></span>
@@ -558,7 +601,8 @@
   function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el)); }
 
   $("lang").addEventListener("click", () => { lang = lang === "fr" ? "en" : "fr"; render();
-    document.querySelectorAll(".rv").forEach(el => el.classList.add("in")); });
+    document.querySelectorAll(".rv").forEach(el => el.classList.add("in"));
+    document.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%"); });
   addEventListener("scroll", () => $("nav").classList.toggle("solid", scrollY > 40), { passive: true });
   render();
 })();

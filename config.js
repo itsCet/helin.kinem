@@ -78,6 +78,22 @@ window.SITE = {
       ] }
   ],
 
+  // Audience Instagram (tableau de bord Instagram → Audience, octobre 2026), en %
+  audience: {
+    women: 89.5,
+    ages: [ ["13–17", 1.0], ["18–24", 11.0], ["25–34", 61.7], ["35–44", 18.3], ["45–54", 5.1], ["55–64", 1.8], ["65+", 1.1] ],
+    countries: [
+      { fr: "Suisse", en: "Switzerland", v: 27.0 }, { fr: "France", en: "France", v: 26.1 },
+      { fr: "Allemagne", en: "Germany", v: 11.0 }, { fr: "Turquie", en: "Türkiye", v: 7.2 },
+      { fr: "Algérie", en: "Algeria", v: 3.2 }
+    ],
+    languages: [
+      { fr: "Français", en: "French", v: 54.6 }, { fr: "Allemand", en: "German", v: 12.5 },
+      { fr: "Turc", en: "Turkish", v: 10.5 }, { fr: "Anglais", en: "English", v: 9.3 },
+      { fr: "Arabe", en: "Arabic", v: 3.2 }
+    ]
+  },
+
   // Réseaux sociaux (carte « Mes réseaux »). Le contact passe uniquement par e-mail.
   socials: [
     { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
