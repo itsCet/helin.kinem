@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Helin Kinem · Media Kit</title>
-<meta name="description" content="Créatrice de contenu basée à Genève — media kit et collaborations.">
+<meta name="description" content="Geneva-based content creator: media kit and brand collaborations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Mulish:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -269,7 +269,7 @@
   <div class="wrap">
     <a class="logo" href="#top" data-k="name"></a>
     <div class="nav-r">
-      <button class="pill" id="lang" aria-label="Changer de langue">EN</button>
+      <button class="pill" id="lang" aria-label="Français / English">FR</button>
       <a class="pill solid" href="#contact" data-t="nav_cta"></a>
     </div>
   </div>
@@ -379,20 +379,21 @@
 (() => {
   const S = window.SITE;
   const q = new URLSearchParams(location.search);
-  // Personnalisation par marque : ?pour=NomMarque  (ou ?brand=)  &c=hexcouleur  &lang=en
+  // Personnalisation par marque : ?pour=NomMarque  (ou ?brand=)  &c=hexcouleur  &lang=fr
   const brand = (q.get("pour") || q.get("brand") || "").trim().slice(0, 40);
   const color = (q.get("c") || "").replace(/[^0-9a-f]/gi, "");
   if (/^([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color)) {
     document.documentElement.style.setProperty("--accent", "#" + color);
   }
-  let lang = q.get("lang") === "en" ? "en" : "fr";
+  // Anglais par défaut ; ?lang=fr ouvre directement la version française
+  let lang = q.get("lang") === "fr" ? "fr" : "en";
 
   const T = {
     fr: {
       nav_cta: "Collaborer",
       for_brand: b => `Une proposition pour ${b}`,
       for_default: "Media kit · Créatrice de contenu",
-      lead: `Créatrice de contenu basée à ${S.city}. Mode, skincare, pilates et matcha : un quotidien élégant, raconté avec sincérité à une communauté qui me fait confiance.`,
+      lead: `Créatrice de contenu basée à ${S.city.fr}. Mode, skincare, pilates et matcha : un quotidien élégant, raconté avec sincérité à une communauté qui me fait confiance.`,
       cta_collab: "Travaillons ensemble", cta_work: "Voir le travail", scroll: "défiler",
       marquee: ["Mode", "Skincare", "Pilates", "Matcha", "Genève", "New York state of mind"],
       stats_eyebrow: "En chiffres", stats_title: "Une communauté <em>engagée</em>.",
@@ -417,7 +418,7 @@
       nav_cta: "Collaborate",
       for_brand: b => `A proposal for ${b}`,
       for_default: "Media kit · Content creator",
-      lead: `Content creator based in ${S.city}. Fashion, skincare, pilates and matcha: an elegant everyday life, shared honestly with a community that trusts me.`,
+      lead: `Content creator based in ${S.city.en}. Fashion, skincare, pilates and matcha: an elegant everyday life, shared honestly with a community that trusts me.`,
       cta_collab: "Let's work together", cta_work: "See the work", scroll: "scroll",
       marquee: ["Fashion", "Skincare", "Pilates", "Matcha", "Geneva", "New York state of mind"],
       stats_eyebrow: "By the numbers", stats_title: "An <em>engaged</em> community.",
@@ -452,7 +453,7 @@
   const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   // Contenu indépendant de la langue
-  document.querySelectorAll("[data-k]").forEach(el => el.textContent = S[el.dataset.k]);
+  document.querySelectorAll("[data-k]").forEach(el => { if (el.dataset.k !== "city") el.textContent = S[el.dataset.k]; });
   const [first, ...rest] = S.name.split(" ");
   $("first").textContent = first; $("last").textContent = rest.join(" ");
   $("portrait").src = S.portrait; $("portrait").alt = S.name;
@@ -477,6 +478,7 @@
     const t = T[lang];
     document.documentElement.lang = lang;
     $("lang").textContent = lang === "fr" ? "EN" : "FR";
+    document.querySelectorAll('[data-k="city"]').forEach(el => el.textContent = S.city[lang]);
     document.querySelectorAll("[data-t]").forEach(el => {
       const v = t[el.dataset.t]; if (typeof v === "string") el[el.tagName === "H2" ? "innerHTML" : "textContent"] = v;
     });

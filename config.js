@@ -5,7 +5,7 @@ window.SITE = {
   name: "Helin Kinem",
   handle: "helin.kinem",
   instagram: "https://www.instagram.com/helin.kinem/",
-  city: "Genève",
+  city: { fr: "Genève", en: "Geneva" },
   email: "management.helinkinem@gmail.com",
 
   // Photo de profil + portfolio : déposer les fichiers dans assets/photos/
@@ -45,8 +45,8 @@ window.SITE = {
   lastMonth: [
     { name: "Instagram",
       period: { fr: "24 sept. – 24 oct. 2026", en: "Sep 24 – Oct 24, 2026" },
-      note: { fr: "<b>144K personnes</b> ont vu ses reels en un mois, soit près de <b>28 fois</b> sa communauté Instagram.",
-              en: "<b>144K people</b> watched her reels in one month, nearly <b>28 times</b> her Instagram community." },
+      note: { fr: "<b>144K personnes</b> ont vu mes reels en un mois, soit près de <b>28 fois</b> ma communauté Instagram.",
+              en: "<b>144K people</b> watched my reels in one month, nearly <b>28 times</b> my Instagram community." },
       main: [
         { value: 227000, label: { fr: "Vues de reels", en: "Reel views" } },
         { value: 144000, label: { fr: "Personnes touchées", en: "Accounts reached" } },
