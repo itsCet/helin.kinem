@@ -21,7 +21,8 @@ window.SITE = {
       tag: { fr: "Spot · Cookly, Genève", en: "Spot · Cookly, Geneva" } },
     { video: "assets/videos/event-geneva-open.mp4", poster: "assets/videos/event-geneva-open.jpg",
       tag: { fr: "Événement · Gonet Geneva Open", en: "Event · Gonet Geneva Open" } },
-    { src: "assets/photos/03.jpg", tag: { fr: "Pilates", en: "Pilates" } },
+    { video: "assets/videos/beaute-lash-lift.mp4", poster: "assets/videos/beaute-lash-lift.jpg",
+      tag: { fr: "Beauté · Korean lash lift", en: "Beauty · Korean lash lift" } },
     { video: "assets/videos/matcha-test.mp4", poster: "assets/videos/matcha-test.jpg",
       tag: { fr: "Matcha · test à Genève", en: "Matcha · tasting in Geneva" } }
   ],
