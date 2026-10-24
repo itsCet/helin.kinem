@@ -14,7 +14,8 @@ window.SITE = {
   // Vidéo : { video: "assets/videos/xxx.mp4", poster: "assets/videos/xxx.jpg", tag: {...} }
   portrait: "assets/photos/portrait.jpg",
   portfolio: [
-    { src: "assets/photos/01.jpg", tag: { fr: "Mode", en: "Fashion" } },
+    { video: "assets/videos/mode-zara-blazer.mp4", poster: "assets/videos/mode-zara-blazer.jpg",
+      tag: { fr: "Mode · Zara blazer", en: "Fashion · Zara blazer" } },
     { video: "assets/videos/food-gran-caffe.mp4", poster: "assets/videos/food-gran-caffe.jpg",
       tag: { fr: "Food · Gran Caffè, Genève", en: "Food · Gran Caffè, Geneva" } },
     { video: "assets/videos/spot-cookly.mp4", poster: "assets/videos/spot-cookly.jpg",
