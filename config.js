@@ -19,9 +19,10 @@ window.SITE = {
       tag: { fr: "Food · Gran Caffè, Genève", en: "Food · Gran Caffè, Geneva" } },
     { video: "assets/videos/spot-cookly.mp4", poster: "assets/videos/spot-cookly.jpg",
       tag: { fr: "Spot · Cookly, Genève", en: "Spot · Cookly, Geneva" } },
+    { video: "assets/videos/event-geneva-open.mp4", poster: "assets/videos/event-geneva-open.jpg",
+      tag: { fr: "Événement · Gonet Geneva Open", en: "Event · Gonet Geneva Open" } },
     { src: "assets/photos/03.jpg", tag: { fr: "Pilates", en: "Pilates" } },
-    { src: "assets/photos/04.jpg", tag: { fr: "Matcha", en: "Matcha" } },
-    { src: "assets/photos/02.jpg", tag: { fr: "Skincare", en: "Skincare" } }
+    { src: "assets/photos/04.jpg", tag: { fr: "Matcha", en: "Matcha" } }
   ],
 
   // Chiffres clés — À COMPLÉTER avec les vraies stats Instagram
