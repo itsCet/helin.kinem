@@ -186,6 +186,7 @@
   .contact .eyebrow { color: var(--sky-2); }
   .contact .btn.primary { background: var(--sky); color: var(--cocoa); }
   .contact .btn.ghost { background: transparent; border-color: color-mix(in srgb, var(--bg) 40%, transparent); color: var(--bg); }
+  .contact .mail-addr { color: var(--bg); opacity: .8; font-size: .95rem; text-underline-offset: 4px; word-break: break-all; }
   .contact p { color: color-mix(in srgb, var(--bg) 75%, transparent); max-width: 34em; margin: 0 auto 32px; }
   footer { padding: 40px 0; text-align: center; font-size: .8rem; color: var(--muted); }
 
@@ -340,8 +341,9 @@
       <p data-t="contact_p"></p>
       <div class="ctas" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center">
         <a class="btn primary" id="mailBtn" data-t="contact_mail"></a>
-        <a class="btn ghost" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>
-        <span id="socialBtns" style="display:contents"></span>
+      </div>
+      <div style="margin-top: 18px">
+        <a class="mail-addr" id="mailAddr"></a>
       </div>
     </div>
   </div>
@@ -428,7 +430,6 @@
   $("first").textContent = first; $("last").textContent = rest.join(" ");
   $("portrait").src = S.portrait; $("portrait").alt = S.name;
   $("igLink").href = S.instagram;
-  if (S.whatsapp) $("waBtn").href = "https://wa.me/" + S.whatsapp; else $("waBtn").remove();
   $("year").textContent = new Date().getFullYear();
   if (!S.brands || !S.brands.length) $("brands").remove();
   else $("brandList").innerHTML = S.brands.map(b => {
@@ -454,7 +455,8 @@
     });
     $("forText").textContent = brand ? t.for_brand(brand) : t.for_default;
     $("contactTitle").textContent = brand ? t.contact_brand(brand) : t.contact_default;
-    $("mailBtn").href = `mailto:${S.email}?subject=${encodeURIComponent(t.mail_subject(brand))}`;
+    $("mailBtn").href = $("mailAddr").href = `mailto:${S.email}?subject=${encodeURIComponent(t.mail_subject(brand))}`;
+    $("mailAddr").textContent = S.email;
 
     const words = brand ? [...t.marquee, `${S.name} × ${brand}`] : t.marquee;
     const line = words.map(w => `<span>${esc(w)}</span><i>♡</i>`).join("");
@@ -467,8 +469,7 @@
       `<a class="social" href="${n.url}" target="_blank" rel="noopener">
          <span class="pf">${n.name} ↗</span><span class="ct">${fmt(n.followers)}<small>${t.followers}</small></span>
          <span class="hd">${esc(n.handle)}${n.extra ? ` · ${fmt(n.extra.value)} ${n.extra.label[lang]}` : ""}</span></a>`).join("");
-    $("socialBtns").innerHTML = S.socials.map(n =>
-      `<a class="btn ghost" href="${n.url}" target="_blank" rel="noopener">${n.name}</a>`).join("");
+
     $("chips").innerHTML = S.niches[lang].map(n => `<span class="chip">${esc(n)}</span>`).join("");
 
     $("grid").innerHTML = S.portfolio.map(p => p.video

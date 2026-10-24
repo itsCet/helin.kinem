@@ -7,7 +7,6 @@ window.SITE = {
   instagram: "https://www.instagram.com/helin.kinem/",
   city: "Genève",
   email: "management.helinkinem@gmail.com",
-  whatsapp: "",                          // ex. "41791234567" (optionnel)
 
   // Photo de profil + portfolio : déposer les fichiers dans assets/photos/
   // Vidéo : { video: "assets/videos/xxx.mp4", poster: "assets/videos/xxx.jpg", tag: {...} }
@@ -40,7 +39,7 @@ window.SITE = {
     { value: 612800, label: { fr: "J'aime sur TikTok", en: "TikTok likes" } }
   ],
 
-  // Réseaux sociaux (carte « Mes réseaux » + boutons de contact)
+  // Réseaux sociaux (carte « Mes réseaux »). Le contact passe uniquement par e-mail.
   socials: [
     { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
     { name: "TikTok",    handle: "@helinkinem",  url: "https://www.tiktok.com/@helinkinem",    followers: 5336,
