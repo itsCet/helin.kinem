@@ -1,20 +1,7 @@
-# Helin Kinem: media kit web
+# Helin Kinem · media kit
 
-Une page statique (aucune dépendance) à envoyer aux marques.
+Page statique (aucune dépendance) envoyée aux marques : https://helinkinem.vercel.app
 
-## Un lien personnalisé par marque
-
-| Lien | Effet |
-|---|---|
-| `…/?pour=Sephora` | « Une proposition pour Sephora » en haut, dans le bandeau, dans le titre de l'onglet, dans la section contact et dans l'objet de l'e-mail |
-| `…/?pour=Sephora&c=000000` | Le site prend la couleur de la marque (code hex sans `#`) |
-| `…/?lang=fr` | Version française (le site s'ouvre en anglais par défaut ; il y a aussi un bouton FR/EN) |
-
-## Modifier le contenu
-
-- **Textes, stats, audience, formats et marques** : `config.js`
-- **Photos** : déposer `portrait.jpg` et `01.jpg` … `06.jpg` dans `assets/photos/`
-
-## Mise en ligne
-
-GitHub Pages (Settings → Pages → branche `main`), Netlify ou Vercel : il suffit de glisser le dossier.
+- Le site s'ouvre en anglais ; `?lang=fr` l'ouvre directement en français (bouton FR/EN en haut).
+- **Tout le contenu se modifie dans `config.js`** : réseaux et abonnés, chiffres du dernier mois, audience, portfolio, formats, marques.
+- Fichiers : portrait dans `assets/photos/`, vidéos et leurs images d'aperçu dans `assets/videos/`, logos dans `assets/logos/`.

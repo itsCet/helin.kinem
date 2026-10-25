@@ -14,18 +14,16 @@
     --white: #fffdfa;
     --bg: #fbf7f1;               /* blanc cassé */
     --bg-2: #f3e9dc;             /* beige */
+    --latte: #e8d8c6;            /* brun clair */
+    --mocha: #8a6b57;
+    --cocoa: #5a4336;            /* chocolat */
     --sky: #dbe9f5;              /* bleu ciel */
     --sky-2: #c3d9ec;
+    --accent: #7ea6c8;           /* bleu poudré */
+    --accent-deep: #5b86ab;
     --ink: #4a3d36;              /* brun doux au lieu du noir */
     --muted: #8c7d72;
     --line: #eadfd1;
-    --accent: #7ea6c8;           /* bleu poudré — remplacé par ?c= */
-    --accent-deep: #5b86ab;
-    --accent-ink: #ffffff;
-    --card: #fffdfa;
-    --latte: #e8d8c6;            /* brun clair */
-    --mocha: #8a6b57;            /* mocha */
-    --cocoa: #5a4336;            /* chocolat */
     --serif: "Cormorant Garamond", Georgia, serif;
     --script: "Pinyon Script", "Cormorant Garamond", cursive;
     --sans: "Mulish", system-ui, sans-serif;
@@ -39,66 +37,68 @@
   img { display: block; max-width: 100%; }
   a { color: inherit; }
   .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  section { padding: clamp(64px, 10vw, 120px) 0; }
+  section.tight { padding-top: 0; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; }
+  h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: .2rem 0 1.8rem; }
+  h2 em, h3 em { color: var(--accent-deep); }
   .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-family: var(--serif); font-style: italic;
              font-weight: 500; font-size: 1.45rem; line-height: 1.2; color: var(--accent-deep); }
   .eyebrow::before { content: ""; width: 28px; height: 1.5px; background: currentColor; opacity: .6; }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; }
-  h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: .2rem 0 1.8rem; }
-  h2 em { color: var(--accent-deep); }
-  section { padding: clamp(64px, 10vw, 120px) 0; position: relative; }
-  .bow { width: 1em; height: 1em; display: inline-block; vertical-align: -.12em; color: var(--accent); }
+  .center { text-align: center; }
+  .bow { width: 1em; height: 1em; color: var(--accent); }
+
+  /* Boutons */
+  .pill { border: 1px solid var(--sky-2); background: var(--white); color: var(--ink); border-radius: 99px;
+          padding: 7px 16px; font: 500 .78rem var(--sans); cursor: pointer; text-decoration: none; }
+  .pill.solid, .pill[aria-selected="true"] { background: var(--mocha); border-color: var(--mocha); color: var(--white); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 99px;
+         font: 600 .88rem var(--sans); text-decoration: none; transition: transform .25s, box-shadow .25s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn.primary { background: var(--mocha); color: var(--white); }
+  .btn.ghost { background: var(--white); border: 1px solid var(--sky-2); }
 
   /* Navigation */
   nav { position: fixed; inset: 0 0 auto; z-index: 20; transition: background .4s, box-shadow .4s; }
   nav.solid { background: color-mix(in srgb, var(--white) 85%, transparent); backdrop-filter: blur(14px);
               box-shadow: 0 1px 0 var(--line); }
   nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { font-family: var(--script); font-size: 1.8rem; text-decoration: none; color: var(--ink); }
-  .nav-r { display: flex; gap: 8px; align-items: center; }
-  .pill { border: 1px solid var(--sky-2); background: var(--white); color: var(--ink); border-radius: 99px;
-          padding: 7px 16px; font: 500 .78rem var(--sans); cursor: pointer; text-decoration: none; }
-  .pill.solid { background: var(--mocha); border-color: var(--mocha); color: var(--white); }
+  nav .actions { display: flex; gap: 8px; }
+  .logo { font-family: var(--script); font-size: 1.8rem; text-decoration: none; }
 
   /* Hero */
-  .hero { min-height: 100svh; display: grid; align-items: center; padding-top: 96px; position: relative; overflow: hidden;
+  .hero { min-height: 100svh; display: grid; align-items: center; padding: 96px 0 0; position: relative; overflow: hidden;
           background: radial-gradient(60% 55% at 85% 20%, var(--sky) 0%, transparent 70%),
                       radial-gradient(50% 50% at 5% 90%, var(--bg-2) 0%, transparent 70%), var(--bg); }
-  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; position: relative; }
-  .for { display: inline-flex; gap: 10px; align-items: center; margin-bottom: 22px; padding: 8px 18px 8px 14px;
-         background: var(--white); border: 1px solid var(--sky-2); border-radius: 99px; font-size: .85rem;
-         box-shadow: var(--shadow); opacity: 0; animation: up .9s .1s forwards; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .kicker { display: inline-flex; gap: 10px; align-items: center; margin-bottom: 22px; padding: 8px 18px 8px 14px;
+            background: var(--white); border: 1px solid var(--sky-2); border-radius: 99px; font-size: .85rem;
+            box-shadow: var(--shadow); opacity: 0; animation: up .9s .1s forwards; }
   .hero h1 { font-size: clamp(3.6rem, 10vw, 7.8rem); letter-spacing: -.01em; }
   .hero h1 span { display: block; opacity: 0; animation: up 1s forwards; }
-  .hero h1 span:nth-child(2) { animation-delay: .15s; font-family: var(--script); font-size: .9em; color: var(--accent-deep);
-                               padding-left: .5em; margin-top: -.1em; }
-  .hero p.lead { max-width: 30em; margin: 26px 0 34px; color: var(--muted); font-size: 1.08rem;
-                 opacity: 0; animation: up 1s .35s forwards; }
-  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; opacity: 0; animation: up 1s .5s forwards; }
-  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 99px;
-         font: 600 .88rem var(--sans); text-decoration: none; transition: transform .25s, box-shadow .25s; }
-  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-  .btn.primary { background: var(--mocha); color: var(--white); }
-  .btn.ghost { background: var(--white); border: 1px solid var(--sky-2); }
+  .hero h1 span + span { animation-delay: .15s; font-family: var(--script); font-size: .9em; color: var(--accent-deep);
+                         padding-left: .5em; margin-top: -.1em; }
+  .lead { max-width: 30em; margin: 26px 0 34px; color: var(--muted); font-size: 1.08rem; opacity: 0; animation: up 1s .35s forwards; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; opacity: 0; animation: up 1s .5s forwards; }
   .portrait-wrap { position: relative; opacity: 0; animation: fade 1.4s .2s forwards; }
   .portrait-wrap::before { content: ""; position: absolute; inset: -14px; border: 1.5px solid var(--sky-2);
                            border-radius: 260px 260px 30px 30px; }
   .portrait { aspect-ratio: 4/5; border-radius: 240px 240px 22px 22px; overflow: hidden; position: relative;
               background: linear-gradient(170deg, var(--sky) 0%, var(--bg-2) 100%); }
   .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-  .portrait .badge { position: absolute; left: 16px; bottom: 16px; background: var(--white); color: var(--ink);
-                     border-radius: 99px; padding: 8px 16px; font-size: .8rem; display: flex; gap: 8px; align-items: center;
-                     box-shadow: var(--shadow); }
+  .badge { position: absolute; left: 16px; bottom: 16px; background: var(--white); border-radius: 99px; padding: 8px 16px;
+           font-size: .8rem; box-shadow: var(--shadow); }
   .sparkle { position: absolute; color: var(--accent); font-size: 1.4rem; animation: twinkle 3s ease-in-out infinite; }
   .scroll-hint { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; font-family: var(--script);
                  font-size: 1.4rem; color: var(--muted); }
 
-  /* Marquee */
+  /* Bandeau */
   .marquee { overflow: hidden; padding: 20px 0; background: var(--cocoa); }
   .marquee-track { display: flex; gap: 40px; width: max-content; animation: slide 40s linear infinite; align-items: center;
                    font-family: var(--serif); font-size: 1.7rem; font-style: italic; white-space: nowrap; color: var(--bg); }
   .marquee-track i { color: var(--sky-2); font-style: normal; font-size: 1.1rem; }
 
-  /* Stats */
+  /* Chiffres clés */
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .stat { padding: 30px 24px; border-radius: 24px; background: var(--white); border: 1px solid var(--line); text-align: center;
           box-shadow: var(--shadow); }
@@ -106,57 +106,47 @@
   .stat:nth-child(3) { background: var(--latte); border-color: var(--latte); }
   .stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; }
   .stat span { font-size: .85rem; color: var(--muted); }
-  .au-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-  .au-grid.three { grid-template-columns: repeat(3, 1fr); }
-  .au-tabs { display: flex; gap: 6px; }
-  .au-tabs button { border: 1px solid var(--sky-2); background: var(--white); color: var(--ink); border-radius: 99px;
-                    padding: 6px 16px; font: 500 .82rem var(--sans); cursor: pointer; }
-  .au-tabs button[aria-selected="true"] { background: var(--mocha); border-color: var(--mocha); color: var(--white); }
+  .note { font-size: .75rem; color: var(--muted); margin-top: 18px; text-align: center; }
+
+  /* Cartes « dernier mois » et audience */
+  .month-title { margin-top: 64px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+  .panel { margin-top: 24px; background: var(--white); border: 1px solid var(--line); border-radius: 32px;
+           padding: clamp(24px, 4vw, 44px); box-shadow: var(--shadow); }
+  .panel + .panel { margin-top: 18px; }
+  .panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; }
+  .panel-head h3 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); }
+  .panel-meta { font-size: .85rem; color: var(--muted); }
+  .panel-hl { margin: 10px 0 26px; color: var(--muted); max-width: 40em; }
+  .panel-hl b { color: var(--accent-deep); font-weight: 600; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpis div { background: var(--bg); border-radius: 20px; padding: 20px 18px; }
+  .kpis div:nth-child(-n+2) { background: var(--sky); }
+  .kpis b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; }
+  .kpis span { font-size: .82rem; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .tags span { background: var(--bg-2); border-radius: 99px; padding: 6px 14px; font-size: .85rem; }
+  .tags b { font-weight: 600; }
+  .tabs { display: flex; gap: 6px; }
+  .au-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .au-sub { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--accent-deep); margin-bottom: 6px; }
   .au-big { font-family: var(--serif); font-size: 3rem; line-height: 1.1; margin: 6px 0 10px; }
   .au-big small { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
-  .au-legend span::first-letter { text-transform: uppercase; }
-  .au-legend span { display: inline-block; }
   .au-legend { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); }
-  .aud2 .bar { grid-template-columns: 78px 1fr 46px; gap: 10px; margin: 8px 0; font-size: .82rem; }
-  @media (max-width: 900px) { .au-grid, .au-grid.three { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .au-grid, .au-grid.three { grid-template-columns: 1fr; gap: 22px; } }
-  .lm-title { margin-top: 64px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
-  .lm-title em { color: var(--accent-deep); }
-  .i30 + .i30 { margin-top: 18px; }
-  .i30 { margin-top: 24px; background: var(--white); border: 1px solid var(--line); border-radius: 32px; padding: clamp(24px, 4vw, 44px);
-         box-shadow: var(--shadow); }
-  .i30-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; }
-  .i30-head h3 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); }
-  .i30-period { font-size: .85rem; color: var(--muted); }
-  .i30-hl { margin: 10px 0 26px; color: var(--muted); max-width: 40em; }
-  .i30-hl b { color: var(--accent-deep); font-weight: 600; }
-  .i30-main { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .i30-main div { background: var(--bg); border-radius: 20px; padding: 20px 18px; }
-  .i30-main div:nth-child(1), .i30-main div:nth-child(2) { background: var(--sky); }
-  .i30-main b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; }
-  .i30-main span { font-size: .82rem; color: var(--muted); }
-  .i30-int { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .i30-int span { background: var(--bg-2); border-radius: 99px; padding: 6px 14px; font-size: .85rem; }
-  .i30-int b { font-weight: 600; }
-  @media (max-width: 900px) { .i30-main { grid-template-columns: repeat(2, 1fr); } }
-  .note { font-size: .75rem; color: var(--muted); margin-top: 18px; text-align: center; }
+  .bar { display: grid; grid-template-columns: 78px 1fr 46px; gap: 10px; align-items: center; font-size: .82rem; margin: 8px 0; }
+  .bar .t, .gender { height: 8px; border-radius: 8px; background: var(--bg-2); overflow: hidden; }
+  .gender { height: 12px; margin: 6px 0 8px; }
+  .bar .f, .gender div { height: 100%; width: 0; border-radius: 8px; background: linear-gradient(90deg, var(--sky-2), var(--accent));
+                         transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .bar em { font-style: normal; text-align: right; color: var(--muted); }
 
-  /* About + audience */
+  /* À propos */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
   .about p { font-size: 1.05rem; margin-bottom: 1em; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
   .chip { background: var(--white); border: 1px solid var(--sky-2); border-radius: 99px; padding: 6px 16px; font-size: .85rem; }
   .chip::before { content: "♡ "; color: var(--mocha); }
-  .aud { background: var(--white); border-radius: 30px; padding: 32px; box-shadow: var(--shadow); }
-  .aud h3 { font-size: 1.8rem; margin-bottom: 18px; }
-  .bar { display: grid; grid-template-columns: 80px 1fr 44px; gap: 12px; align-items: center; font-size: .85rem; margin: 10px 0; }
-  .bar .t { height: 8px; border-radius: 8px; background: var(--bg-2); overflow: hidden; }
-  .bar .f { height: 100%; width: 0; background: linear-gradient(90deg, var(--sky-2), var(--accent)); border-radius: 8px;
-            transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
-  .bar em { font-style: normal; text-align: right; color: var(--muted); }
-  .gender { display: flex; height: 12px; border-radius: 12px; overflow: hidden; margin: 6px 0 8px; background: var(--bg-2); }
-  .gender div { background: linear-gradient(90deg, var(--sky-2), var(--accent)); width: 0; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .platforms { background: var(--white); border-radius: 30px; padding: 32px; box-shadow: var(--shadow); }
+  .platforms h3 { font-size: 1.8rem; margin-bottom: 18px; }
   .social { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px; padding: 18px 0;
             border-top: 1px solid var(--line); text-decoration: none; transition: padding .3s; }
   .social:first-child { border-top: 0; padding-top: 4px; }
@@ -165,29 +155,22 @@
   .social .hd { font-size: .82rem; color: var(--muted); }
   .social .ct { grid-row: 1 / span 2; grid-column: 2; text-align: right; font-family: var(--serif); font-size: 2rem; line-height: 1; }
   .social .ct small { display: block; font-family: var(--sans); font-size: .75rem; color: var(--muted); margin-top: 4px; }
-  .aud .sub { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--accent-deep); margin-top: 20px; }
 
   /* Portfolio */
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .tile { position: relative; aspect-ratio: 4/5; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow);
           background: linear-gradient(165deg, var(--sky) 0%, var(--bg-2) 100%); }
-  .tile:nth-child(even) { background: linear-gradient(165deg, var(--bg-2) 0%, var(--sky) 100%); }
-  .tile:nth-child(3n) { background: linear-gradient(165deg, var(--latte) 0%, var(--bg-2) 100%); }
   .tile:nth-child(3n+2) { translate: 0 40px; }
   .tile:last-child:nth-child(3n+1) { grid-column: 2; translate: 0 40px; }   /* dernière case seule : centrée */
-  .tile img, .tile video { position: relative; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+  .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
   .tile:hover img, .tile:hover video { transform: scale(1.05); }
   .tile.video { cursor: pointer; }
-  .tile .sound { position: absolute; right: 12px; bottom: 12px; width: 34px; height: 34px; border-radius: 50%;
-                 background: var(--white); display: grid; place-items: center; font-size: .9rem; }
-  .tile .play { position: absolute; right: 12px; top: 12px; background: color-mix(in srgb, var(--white) 85%, transparent);
-                border-radius: 99px; padding: 4px 10px; font-size: .7rem; }
-  .tile .tag { position: absolute; left: 14px; bottom: 14px; background: var(--white); color: var(--ink);
-               border-radius: 99px; padding: 5px 14px; font-size: .78rem; }
-  .tile .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--script);
-              font-size: 2.4rem; color: var(--accent-deep); }
+  .tile .tag, .tile .sound, .tile .play { position: absolute; background: var(--white); border-radius: 99px; }
+  .tile .tag { left: 14px; bottom: 14px; padding: 5px 14px; font-size: .78rem; }
+  .tile .sound { right: 12px; bottom: 12px; width: 34px; height: 34px; display: grid; place-items: center; font-size: .9rem; }
+  .tile .play { right: 12px; top: 12px; padding: 4px 10px; font-size: .7rem; background: color-mix(in srgb, var(--white) 85%, transparent); }
 
-  /* Offers */
+  /* Formats */
   .offers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .offer { background: var(--white); border: 1px solid var(--line); border-radius: 28px; padding: 30px 24px; text-align: center;
            transition: transform .35s, box-shadow .35s; }
@@ -198,33 +181,28 @@
   .offer h3 { font-size: 1.6rem; margin: 16px 0 8px; }
   .offer p { font-size: .9rem; color: var(--muted); }
 
-  .brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); justify-content: center; gap: 14px; }
+  /* Marques */
+  .brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); justify-content: center; gap: 14px; margin-top: 28px; }
   .brand { height: 110px; border-radius: 24px; background: var(--white); border: 1px solid var(--line);
-           display: grid; place-items: center; padding: 22px 28px; text-decoration: none;
-           transition: transform .35s, box-shadow .35s; }
+           display: grid; place-items: center; padding: 22px 28px; transition: transform .35s, box-shadow .35s; }
   .brand:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-  .brand img { max-height: 62px; max-width: 100%; object-fit: contain; filter: grayscale(1) sepia(.35);
-               opacity: .75; transition: filter .4s, opacity .4s; }
+  .brand img { max-height: 62px; object-fit: contain; filter: grayscale(1) sepia(.35); opacity: .75; transition: filter .4s, opacity .4s; }
   .brand:hover img { filter: none; opacity: 1; }
   .brand.tall { padding-block: 10px; }
   .brand.tall img { max-height: 88px; }
   .brand span { font-family: var(--serif); font-style: italic; font-size: 1.8rem; color: var(--mocha); }
-  @media (max-width: 560px) { .brands { grid-template-columns: repeat(2, 1fr); } .brand { height: 92px; padding: 16px; }
-    .brand.tall { padding-block: 8px; } .brand.tall img { max-height: 74px; }
-    .brand:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 7px); justify-self: center; } }
 
   /* Contact */
   .contact { background: linear-gradient(160deg, var(--cocoa) 0%, var(--mocha) 100%); color: var(--bg); border-radius: 40px;
-             padding: clamp(48px, 8vw, 96px) clamp(24px, 6vw, 80px); text-align: center; position: relative; overflow: hidden; }
+             padding: clamp(48px, 8vw, 96px) clamp(24px, 6vw, 80px); text-align: center; }
   .contact h2 { margin-bottom: 1rem; }
   .contact .eyebrow { color: var(--sky-2); }
-  .contact .btn.primary { background: var(--sky); color: var(--cocoa); }
-  .contact .btn.ghost { background: transparent; border-color: color-mix(in srgb, var(--bg) 40%, transparent); color: var(--bg); }
-  .contact .mail-addr { color: var(--bg); opacity: .8; font-size: .95rem; text-underline-offset: 4px; word-break: break-all; }
   .contact p { color: color-mix(in srgb, var(--bg) 75%, transparent); max-width: 34em; margin: 0 auto 32px; }
+  .contact .btn { background: var(--sky); color: var(--cocoa); }
+  .mail-addr { display: inline-block; margin-top: 18px; opacity: .8; font-size: .95rem; text-underline-offset: 4px; word-break: break-all; }
   footer { padding: 40px 0; text-align: center; font-size: .8rem; color: var(--muted); }
 
-  /* Reveal */
+  /* Apparition au défilement */
   .rv { opacity: 0; transform: translateY(28px); transition: opacity 1s, transform 1s cubic-bezier(.2,.8,.2,1); }
   .rv.in { opacity: 1; transform: none; }
 
@@ -237,24 +215,28 @@
   }
 
   @media (max-width: 900px) {
-    .split { grid-template-columns: 1fr; }
     /* Mobile : photo à droite du nom, texte et boutons en dessous */
     .hero { min-height: auto; padding: 100px 0 56px; }
     .hero-grid { grid-template-columns: 1fr 40%; column-gap: 16px; row-gap: 0;
-                 grid-template-areas: "for for" "name photo" "lead lead" "ctas ctas"; }
+                 grid-template-areas: "kicker kicker" "name photo" "lead lead" "ctas ctas"; }
     .hero-text { display: contents; }
-    .hero .for { grid-area: for; justify-self: start; margin-bottom: 26px; }
+    .kicker { grid-area: kicker; justify-self: start; margin-bottom: 26px; }
     .hero h1 { grid-area: name; align-self: center; font-size: clamp(3rem, 13vw, 5.5rem); }
-    .hero h1 span:nth-child(2) { padding-left: .25em; }
-    .portrait-wrap { grid-area: photo; align-self: center; width: auto; margin: 8px 8px 8px 0; }
+    .hero h1 span + span { padding-left: .25em; }
+    .portrait-wrap { grid-area: photo; align-self: center; margin: 8px 8px 8px 0; }
     .portrait-wrap::before { inset: -7px; }
-    .hero p.lead { grid-area: lead; margin: 30px 0 28px; }
-    .hero .ctas { grid-area: ctas; }
+    .lead { grid-area: lead; margin: 30px 0 28px; }
+    .ctas { grid-area: ctas; }
     .sparkle, .scroll-hint { display: none; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .offers { grid-template-columns: repeat(2, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .au-grid { grid-template-columns: 1fr 1fr; }
+    .stats, .kpis, .offers { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 560px) {
+    .au-grid, .offers { grid-template-columns: 1fr; }
+    .au-grid { gap: 22px; }
+    .stat { padding: 24px 12px; }
+    .badge { display: none; }
     .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .tile:nth-child(3n+2) { translate: none; }
     .tile:nth-child(even) { translate: 0 28px; }
@@ -263,27 +245,20 @@
     .tile .tag { left: 8px; bottom: 8px; max-width: calc(100% - 54px); font-size: .68rem; padding: 4px 10px; line-height: 1.35; }
     .tile .sound { right: 8px; bottom: 8px; width: 30px; height: 30px; }
     .tile .play { right: 8px; top: 8px; }
-    .offers { grid-template-columns: 1fr; }
-    .stat { padding: 24px 12px; }
-    .scroll-hint { display: none; }
-    .portrait .badge { display: none; }
+    .brands { grid-template-columns: repeat(2, 1fr); }
+    .brand { height: 92px; padding: 16px; }
+    .brand.tall { padding-block: 8px; }
+    .brand.tall img { max-height: 74px; }
+    .brand:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 7px); justify-self: center; }
   }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="bow" viewBox="0 0 64 40">
-    <path d="M32 20 C22 6 8 2 5 9 C2 16 10 28 32 20 Z" fill="currentColor" opacity=".85"/>
-    <path d="M32 20 C42 6 56 2 59 9 C62 16 54 28 32 20 Z" fill="currentColor" opacity=".85"/>
-    <path d="M30 21 L22 38 L28 36 L32 24 Z M34 21 L42 38 L36 36 L32 24 Z" fill="currentColor" opacity=".7"/>
-    <ellipse cx="32" cy="20" rx="5" ry="5.5" fill="currentColor"/>
-  </symbol>
-</svg>
 
 <nav id="nav">
   <div class="wrap">
     <a class="logo" href="#top" data-k="name"></a>
-    <div class="nav-r">
+    <div class="actions">
       <button class="pill" id="lang" aria-label="Français / English">FR</button>
       <a class="pill solid" href="#contact" data-t="nav_cta"></a>
     </div>
@@ -293,7 +268,14 @@
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <div class="for"><svg class="bow" viewBox="0 0 64 40" aria-hidden="true"><use href="#bow"/></svg><span id="forText"></span></div>
+      <div class="kicker">
+        <svg class="bow" viewBox="0 0 64 40" aria-hidden="true" fill="currentColor">
+          <path d="M32 20C22 6 8 2 5 9s5 19 27 11ZM32 20C42 6 56 2 59 9s-5 19-27 11Z" opacity=".85"/>
+          <path d="M30 21 22 38l6-2 4-12Zm4 0 8 17-6-2-4-12Z" opacity=".7"/>
+          <ellipse cx="32" cy="20" rx="5" ry="5.5"/>
+        </svg>
+        <span data-t="kicker"></span>
+      </div>
       <h1><span id="first"></span><span id="last"></span></h1>
       <p class="lead" data-t="lead"></p>
       <div class="ctas">
@@ -306,8 +288,8 @@
       <span class="sparkle" style="top:58%; right:-30px; animation-delay:1.2s">✦</span>
       <span class="sparkle" style="bottom:-26px; left:22%; animation-delay:2s; font-size:1rem">✧</span>
       <div class="portrait">
-        <img id="portrait" alt="" onerror="this.remove()">
-        <div class="badge"><span>♡</span><span data-k="city"></span> · <span>@<span data-k="handle"></span></span></div>
+        <img id="portrait" alt="">
+        <div class="badge">♡ <span data-k="city"></span> · <span id="handle"></span></div>
       </div>
     </div>
   </div>
@@ -322,21 +304,22 @@
     <h2 class="rv" data-t="stats_title"></h2>
     <div class="stats rv" id="statsGrid"></div>
     <p class="note" id="statsDate"></p>
-    <div id="lastMonth">
-      <h3 class="lm-title rv" id="lmTitle"></h3>
-      <div id="lmCards"></div>
-    </div>
-    <div class="i30 aud2 rv" id="audience">
-      <div class="i30-head"><h3 data-t="au_title"></h3><div class="au-tabs" id="auTabs" role="tablist"></div></div>
-      <p class="i30-hl" id="auHl"></p>
+
+    <h3 class="month-title rv" id="monthTitle"></h3>
+    <div id="monthCards"></div>
+
+    <div class="panel rv" id="audience">
+      <div class="panel-head"><h3 data-t="au_title"></h3><div class="tabs" id="auTabs" role="tablist"></div></div>
+      <p class="panel-hl" id="auHl"></p>
       <div class="au-grid">
-        <div><div class="au-sub" data-t="au_gender"></div>
+        <div>
+          <div class="au-sub" data-t="au_gender"></div>
           <div class="au-big" id="auWomen"></div>
-          <div class="gender"><div data-w=""></div></div>
-          <div class="au-legend"><span id="auW"></span><span id="auM"></span></div></div>
+          <div class="gender"><div id="auBar"></div></div>
+          <div class="au-legend"><span id="auW"></span><span id="auM"></span></div>
+        </div>
         <div><div class="au-sub" data-t="au_age"></div><div id="auAges"></div></div>
         <div><div class="au-sub" data-t="au_countries"></div><div id="auCountries"></div></div>
-        <div id="auLangCol"><div class="au-sub" data-t="au_languages"></div><div id="auLangs"></div></div>
       </div>
     </div>
   </div>
@@ -351,8 +334,8 @@
       <p data-t="about_p2"></p>
       <div class="chips" id="chips"></div>
     </div>
-    <div class="aud rv">
-      <h3 data-t="aud_title"></h3>
+    <div class="platforms rv">
+      <h3 data-t="platforms_title"></h3>
       <div id="socialList"></div>
     </div>
   </div>
@@ -363,13 +346,13 @@
     <div class="eyebrow rv" data-t="work_eyebrow"></div>
     <h2 class="rv" data-t="work_title"></h2>
     <div class="grid" id="grid"></div>
-    <div style="text-align:center; margin-top: 80px">
+    <div class="center" style="margin-top: 80px">
       <a class="btn ghost" id="igLink" target="_blank" rel="noopener" data-t="see_ig"></a>
     </div>
   </div>
 </section>
 
-<section id="offers" style="padding-top: 0">
+<section class="tight">
   <div class="wrap">
     <div class="eyebrow rv" data-t="offers_eyebrow"></div>
     <h2 class="rv" data-t="offers_title"></h2>
@@ -377,25 +360,21 @@
   </div>
 </section>
 
-<section id="brands" style="padding-top: 0">
-  <div class="wrap">
-    <div style="text-align:center; margin-bottom: 28px"><div class="eyebrow rv" data-t="brands_eyebrow"></div></div>
+<section class="tight">
+  <div class="wrap center">
+    <div class="eyebrow rv" data-t="brands_eyebrow"></div>
     <div class="brands rv" id="brandList"></div>
   </div>
 </section>
 
-<section id="contact" style="padding-top: 0">
+<section class="tight" id="contact">
   <div class="wrap">
     <div class="contact rv">
       <div class="eyebrow" data-t="contact_eyebrow"></div>
-      <h2 id="contactTitle"></h2>
+      <h2 data-t="contact_title"></h2>
       <p data-t="contact_p"></p>
-      <div class="ctas" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center">
-        <a class="btn primary" id="mailBtn" data-t="contact_mail"></a>
-      </div>
-      <div style="margin-top: 18px">
-        <a class="mail-addr" id="mailAddr"></a>
-      </div>
+      <a class="btn" id="mailBtn" data-t="contact_mail"></a><br>
+      <a class="mail-addr" id="mailAddr"></a>
     </div>
   </div>
 </section>
@@ -406,130 +385,111 @@
 <script>
 (() => {
   const S = window.SITE;
-  const q = new URLSearchParams(location.search);
-  // Personnalisation par marque : ?pour=NomMarque  (ou ?brand=)  &c=hexcouleur  &lang=fr
-  const brand = (q.get("pour") || q.get("brand") || "").trim().slice(0, 40);
-  const color = (q.get("c") || "").replace(/[^0-9a-f]/gi, "");
-  if (/^([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color)) {
-    document.documentElement.style.setProperty("--accent", "#" + color);
-  }
   // Anglais par défaut ; ?lang=fr ouvre directement la version française
-  let lang = q.get("lang") === "fr" ? "fr" : "en";
+  let lang = new URLSearchParams(location.search).get("lang") === "fr" ? "fr" : "en";
 
   const T = {
     fr: {
       nav_cta: "Collaborer",
-      for_brand: b => `Une proposition pour ${b}`,
-      for_default: "Media kit · Créatrice de contenu",
+      kicker: "Media kit · Créatrice de contenu",
       lead: `Créatrice de contenu basée à ${S.city.fr}. Mode, skincare, pilates et matcha : un quotidien élégant, raconté avec sincérité à une communauté qui me fait confiance.`,
       cta_collab: "Travaillons ensemble", cta_work: "Voir le travail", scroll: "défiler",
       marquee: ["Mode", "Skincare", "Pilates", "Matcha", "Genève", "New York state of mind"],
       stats_eyebrow: "En chiffres", stats_title: "Une communauté <em>engagée</em>.",
       stats_date: d => `Chiffres relevés en ${d} · Instagram, TikTok, YouTube`,
-      about_eyebrow: "À propos", about_title: "Genève, vue de <em>l'intérieur</em>.",
-      about_p1: `Un cours de pilates au réveil, un matcha latte dans mon café préféré, une routine skincare bien rodée : je partage un quotidien genevois élégant, avec New York toujours en tête.`,
-      about_p2: "Mode, beauté, bien-être : mon audience me suit pour des recommandations sincères. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
-      aud_title: "Mes réseaux", followers: "abonnés",
-      lm_title: v => `<em>${v} vues</em> en un mois sur Instagram et TikTok.`,
-      lm_card: n => `${n} · dernier mois`,
-      au_title: "Qui me suit", au_gender: "Genre", au_age: "Âge", au_countries: "Pays", au_languages: "Langues",
-      au_women: "femmes", au_men: "hommes",
+      month_title: v => `<em>${v} vues</em> en un mois sur Instagram et TikTok.`,
+      month_card: n => `${n} · dernier mois`,
+      au_title: "Qui me suit", au_gender: "Genre", au_age: "Âge", au_countries: "Pays",
+      au_women: "Femmes", au_men: "Hommes",
       au_hl: (w, a, c) => `Une audience à <b>${w} féminine</b>, dont <b>${a} ont entre 25 et 34 ans</b>. <b>${c}</b> vit en Suisse ou en France.`,
+      about_eyebrow: "À propos", about_title: "Genève, vue de <em>l'intérieur</em>.",
+      about_p1: "Un cours de pilates au réveil, un matcha latte dans mon café préféré, une routine skincare bien rodée : je partage un quotidien genevois élégant, avec New York toujours en tête.",
+      about_p2: "Mode, beauté, bien-être : mon audience me suit pour des recommandations sincères. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
+      platforms_title: "Mes réseaux", followers: "abonnés",
       work_eyebrow: "Portfolio", work_title: "Une signature <em>visuelle</em>.", see_ig: "Voir tout sur Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "Ce que je peux créer pour vous.",
       brands_eyebrow: "Elles m'ont fait confiance",
-      contact_eyebrow: "Contact",
-      contact_brand: b => `Imaginons quelque chose pour ${b}.`,
-      contact_default: "Imaginons quelque chose ensemble.",
+      contact_eyebrow: "Contact", contact_title: "Imaginons quelque chose ensemble.",
       contact_p: "Tarifs et disponibilités sur demande. Réponse sous 48 h.",
-      contact_mail: "Écrire un e-mail",
-      mail_subject: b => `Collaboration${b ? " — " + b : ""} × ${S.name}`
+      contact_mail: "Écrire un e-mail"
     },
     en: {
       nav_cta: "Collaborate",
-      for_brand: b => `A proposal for ${b}`,
-      for_default: "Media kit · Content creator",
+      kicker: "Media kit · Content creator",
       lead: `Content creator based in ${S.city.en}. Fashion, skincare, pilates and matcha: an elegant everyday life, shared honestly with a community that trusts me.`,
       cta_collab: "Let's work together", cta_work: "See the work", scroll: "scroll",
       marquee: ["Fashion", "Skincare", "Pilates", "Matcha", "Geneva", "New York state of mind"],
       stats_eyebrow: "By the numbers", stats_title: "An <em>engaged</em> community.",
       stats_date: d => `Figures as of ${d} · Instagram, TikTok, YouTube`,
+      month_title: v => `<em>${v} views</em> in one month on Instagram and TikTok.`,
+      month_card: n => `${n} · last month`,
+      au_title: "Who follows me", au_gender: "Gender", au_age: "Age", au_countries: "Countries",
+      au_women: "Women", au_men: "Men",
+      au_hl: (w, a, c) => `An audience that is <b>${w} female</b>, with <b>${a} aged 25 to 34</b>. <b>${c}</b> live in Switzerland or France.`,
       about_eyebrow: "About", about_title: "Geneva, from the <em>inside</em>.",
       about_p1: "A morning pilates class, a matcha latte at my favourite café, a well-tuned skincare routine: I share an elegant Geneva life, with New York always on my mind.",
       about_p2: "Fashion, beauty, wellness: my audience follows me for honest recommendations. Every collaboration is designed to fit naturally into my world.",
-      aud_title: "My platforms", followers: "followers",
-      lm_title: v => `<em>${v} views</em> in one month on Instagram and TikTok.`,
-      lm_card: n => `${n} · last month`,
-      au_title: "Who follows me", au_gender: "Gender", au_age: "Age", au_countries: "Countries", au_languages: "Languages",
-      au_women: "women", au_men: "men",
-      au_hl: (w, a, c) => `An audience that is <b>${w} female</b>, with <b>${a} aged 25 to 34</b>. <b>${c}</b> live in Switzerland or France.`,
+      platforms_title: "My platforms", followers: "followers",
       work_eyebrow: "Portfolio", work_title: "A <em>visual</em> signature.", see_ig: "See everything on Instagram ↗",
       offers_eyebrow: "Formats", offers_title: "What I can create for you.",
       brands_eyebrow: "Brands that trusted me",
-      contact_eyebrow: "Contact",
-      contact_brand: b => `Let's imagine something for ${b}.`,
-      contact_default: "Let's imagine something together.",
+      contact_eyebrow: "Contact", contact_title: "Let's imagine something together.",
       contact_p: "Rates and availability on request. Reply within 48 hours.",
-      contact_mail: "Send an email",
-      mail_subject: b => `Collaboration${b ? " — " + b : ""} × ${S.name}`
+      contact_mail: "Send an email"
     }
   };
 
   const $ = id => document.getElementById(id);
-  const fmt = (n, d = 0) => {
-    const short = (v, u) => v.toFixed(1).replace(".0", "").replace(".", lang === "fr" ? "," : ".") + u;
-    if (n >= 1e6) return short(n / 1e6, "M");
-    if (n >= 1e4) return short(n / 1e3, "K");
-    return n.toLocaleString(lang === "fr" ? "fr-CH" : "en-GB", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // 5180 → « 5’180 » ; 10 814 → « 10,8K » ; 612 800 → « 612,8K »
+  const fmt = n => {
+    if (n >= 1e4) return (n / 1e3).toFixed(1).replace(".0", "").replace(".", lang === "fr" ? "," : ".") + "K";
+    return Math.round(n).toLocaleString(lang === "fr" ? "fr-CH" : "en-GB");
   };
   const pct = v => { const n = v.toFixed(1).replace(/\.0$/, ""); return lang === "fr" ? n.replace(".", ",") + " %" : n + "%"; };
-  const bar = ([label, v]) =>
+  const bar = (label, v) =>
     `<div class="bar"><span>${label}</span><div class="t"><div class="f" data-w="${v}"></div></div><em>${pct(v)}</em></div>`;
-  const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // Chiffre animé : data-v = valeur finale, data-p = préfixe (« ≈ »)
+  const counter = (value, prefix = "") => `<b data-v="${value}" data-p="${prefix}">${prefix}${fmt(value)}</b>`;
+  const fillBars = root => root.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%");
 
   // Contenu indépendant de la langue
-  document.querySelectorAll("[data-k]").forEach(el => { if (el.dataset.k !== "city") el.textContent = S[el.dataset.k]; });
-  const [first, ...rest] = S.name.split(" ");
-  $("first").textContent = first; $("last").textContent = rest.join(" ");
+  const instagram = S.socials[0];
+  document.querySelectorAll('[data-k="name"]').forEach(el => el.textContent = S.name);
+  [$("first").textContent, $("last").textContent] = S.name.split(" ");
   $("portrait").src = S.portrait; $("portrait").alt = S.name;
-  $("igLink").href = S.instagram;
+  $("handle").textContent = instagram.handle;
+  $("igLink").href = instagram.url;
+  $("mailBtn").href = $("mailAddr").href = `mailto:${S.email}?subject=${encodeURIComponent("Collaboration × " + S.name)}`;
+  $("mailAddr").textContent = S.email;
   $("year").textContent = new Date().getFullYear();
-  if (!S.brands || !S.brands.length) $("brands").remove();
-  else $("brandList").innerHTML = S.brands.map(b => {
-    const name = esc(b.name || b);
-    // Logo si le fichier existe, sinon le nom en toutes lettres
-    const inner = b.logo ? `<img src="${b.logo}" alt="${name}" loading="lazy"
-        onerror="this.replaceWith(Object.assign(document.createElement('span'), { textContent: this.alt }))">` : `<span>${name}</span>`;
-    const cls = b.tall ? "brand tall" : "brand";
-    return b.url ? `<a class="${cls}" href="${b.url}" target="_blank" rel="noopener">${inner}</a>` : `<div class="${cls}">${inner}</div>`;
-  }).join("");
-  if (brand) document.title = `${S.name} × ${brand}`;
+  $("brandList").innerHTML = S.brands.map(b => `
+    <a class="brand${b.tall ? " tall" : ""}" href="${b.url}" target="_blank" rel="noopener">
+      <img src="${b.logo}" alt="${esc(b.name)}" loading="lazy"
+           onerror="this.replaceWith(Object.assign(document.createElement('span'), { textContent: this.alt }))">
+    </a>`).join("");
 
+  // Les vidéos ne se chargent et ne jouent que lorsqu'elles sont à l'écran
   const videoIO = new IntersectionObserver(entries => entries.forEach(en => {
     if (en.isIntersecting) en.target.play().catch(() => {}); else en.target.pause();
   }), { threshold: 0.25 });
 
   let auIdx = 0;
-  function renderAudience(t = T[lang]) {
-    const A = S.audience[auIdx];
+  function renderAudience() {
+    const t = T[lang], A = S.audience[auIdx];
     $("auTabs").innerHTML = S.audience.map((p, i) =>
-      `<button role="tab" aria-selected="${i === auIdx}" data-i="${i}">${p.name}</button>`).join("");
+      `<button class="pill" role="tab" aria-selected="${i === auIdx}" data-i="${i}">${p.name}</button>`).join("");
     $("auTabs").querySelectorAll("button").forEach(b => b.onclick = () => { auIdx = +b.dataset.i; renderAudience(); });
-    const young = (A.ages.find(a => a[0].startsWith("25")) || [0, 0])[1];
-    const chf = A.countries.filter(c => c.en === "Switzerland" || c.en === "France").reduce((x, c) => x + c.v, 0);
-    $("auHl").innerHTML = t.au_hl(pct(A.women), pct(young), pct(chf));
-    $("auWomen").innerHTML = `${pct(A.women)} <small>${t.au_women}</small>`;
-    document.querySelector("#audience .gender div").dataset.w = A.women;
+    const young = A.ages.find(a => a[0].startsWith("25"))[1];
+    const chFr = A.countries.filter(c => c.en === "Switzerland" || c.en === "France").reduce((x, c) => x + c.v, 0);
+    $("auHl").innerHTML = t.au_hl(pct(A.women), pct(young), pct(chFr));
+    $("auWomen").innerHTML = `${pct(A.women)} <small>${t.au_women.toLowerCase()}</small>`;
+    $("auBar").dataset.w = A.women;
     $("auW").textContent = `${t.au_women} ${pct(A.women)}`;
     $("auM").textContent = `${t.au_men} ${pct(100 - A.women)}`;
-    $("auAges").innerHTML = A.ages.map(bar).join("");
-    $("auCountries").innerHTML = A.countries.map(c => bar([c[lang], c.v])).join("");
-    $("auLangCol").hidden = !A.languages;
-    document.querySelector("#audience .au-grid").classList.toggle("three", !A.languages);
-    $("auLangs").innerHTML = (A.languages || []).map(c => bar([c[lang], c.v])).join("");
-    // Carte déjà visible : on remplit les barres tout de suite
-    if ($("audience").classList.contains("in"))
-      requestAnimationFrame(() => $("audience").querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%"));
+    $("auAges").innerHTML = A.ages.map(([label, v]) => bar(label, v)).join("");
+    $("auCountries").innerHTML = A.countries.map(c => bar(c[lang], c.v)).join("");
+    if ($("audience").classList.contains("in")) requestAnimationFrame(() => fillBars($("audience")));
   }
 
   function render() {
@@ -537,89 +497,81 @@
     document.documentElement.lang = lang;
     $("lang").textContent = lang === "fr" ? "EN" : "FR";
     document.querySelectorAll('[data-k="city"]').forEach(el => el.textContent = S.city[lang]);
-    document.querySelectorAll("[data-t]").forEach(el => {
-      const v = t[el.dataset.t]; if (typeof v === "string") el[el.tagName === "H2" ? "innerHTML" : "textContent"] = v;
-    });
-    $("forText").textContent = brand ? t.for_brand(brand) : t.for_default;
-    $("contactTitle").textContent = brand ? t.contact_brand(brand) : t.contact_default;
-    $("mailBtn").href = $("mailAddr").href = `mailto:${S.email}?subject=${encodeURIComponent(t.mail_subject(brand))}`;
-    $("mailAddr").textContent = S.email;
+    document.querySelectorAll("[data-t]").forEach(el => el.innerHTML = t[el.dataset.t]);
 
-    const words = brand ? [...t.marquee, `${S.name} × ${brand}`] : t.marquee;
-    const line = words.map(w => `<span>${esc(w)}</span><i>♡</i>`).join("");
+    const line = t.marquee.map(w => `<span>${w}</span><i>♡</i>`).join("");
     $("marquee").innerHTML = line + line;
 
-    $("statsGrid").innerHTML = S.stats.map((s, i) =>
-      `<div class="stat"><b data-i="${i}">${fmt(s.value, s.decimals)}${s.suffix || ""}</b><span>${s.label[lang]}</span></div>`).join("");
+    $("statsGrid").innerHTML = S.stats.map(s => `<div class="stat">${counter(s.value)}<span>${s.label[lang]}</span></div>`).join("");
     $("statsDate").textContent = t.stats_date(S.statsAsOf[lang]);
-    const L = S.lastMonth || [];
-    if (L.length) {
-      const num = m => m.text ? m.text[lang] : (m.approx ? "≈ " : "") + fmt(m.value);
-      $("lmTitle").innerHTML = t.lm_title(fmt(L.reduce((sum, p) => sum + p.main[0].value, 0)));
-      $("lmCards").innerHTML = L.map(p => `
-        <div class="i30 rv">
-          <div class="i30-head"><h3>${t.lm_card(p.name)}</h3><span class="i30-period">${p.period[lang]}</span></div>
-          <p class="i30-hl">${p.note[lang]}</p>
-          <div class="i30-main">${p.main.map(m =>
-            `<div><b ${m.text ? "" : `data-v="${m.value}" data-p="${m.approx ? "≈ " : ""}"`}>${num(m)}</b><span>${m.label[lang]}</span></div>`).join("")}</div>
-          <div class="i30-int">${p.chips.map(m => `<span><b>${num(m)}</b> ${m.label[lang]}</span>`).join("")}</div>
-        </div>`).join("");
-    } else $("lastMonth").remove();
-    if (S.audience && S.audience.length) renderAudience(t);
-    else $("audience").remove();
-    $("socialList").innerHTML = S.socials.map(n =>
-      `<a class="social" href="${n.url}" target="_blank" rel="noopener">
-         <span class="pf">${n.name} ↗</span><span class="ct">${fmt(n.followers)}<small>${t.followers}</small></span>
-         <span class="hd">${esc(n.handle)}${n.extra ? ` · ${fmt(n.extra.value)} ${n.extra.label[lang]}` : ""}</span></a>`).join("");
+
+    const num = m => m.text ? `<b>${m.text[lang]}</b>` : counter(m.value, m.approx ? "≈ " : "");
+    $("monthTitle").innerHTML = t.month_title(fmt(S.lastMonth.reduce((sum, p) => sum + p.main[0].value, 0)));
+    $("monthCards").innerHTML = S.lastMonth.map(p => `
+      <div class="panel rv">
+        <div class="panel-head"><h3>${t.month_card(p.name)}</h3><span class="panel-meta">${p.period[lang]}</span></div>
+        <p class="panel-hl">${p.note[lang]}</p>
+        <div class="kpis">${p.main.map(m => `<div>${num(m)}<span>${m.label[lang]}</span></div>`).join("")}</div>
+        <div class="tags">${p.chips.map(m => `<span><b>${m.text ? m.text[lang] : fmt(m.value)}</b> ${m.label[lang]}</span>`).join("")}</div>
+      </div>`).join("");
+    renderAudience();
 
     $("chips").innerHTML = S.niches[lang].map(n => `<span class="chip">${esc(n)}</span>`).join("");
+    $("socialList").innerHTML = S.socials.map(n => `
+      <a class="social" href="${n.url}" target="_blank" rel="noopener">
+        <span class="pf">${n.name} ↗</span><span class="ct">${fmt(n.followers)}<small>${t.followers}</small></span>
+        <span class="hd">${esc(n.handle)}${n.extra ? ` · ${fmt(n.extra.value)} ${n.extra.label[lang]}` : ""}</span>
+      </a>`).join("");
 
-    $("grid").innerHTML = S.portfolio.map(p => p.video
-      ? `<figure class="tile video rv">
-           <video src="${p.video}" poster="${p.poster || ""}" muted loop playsinline preload="none"></video>
-           <span class="play">▶ Reel</span><span class="sound" aria-hidden="true">🔇</span>
-           <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`
-      : `<figure class="tile rv"><div class="ph">${esc(p.tag[lang])}</div>
-           <img src="${p.src}" alt="${esc(p.tag[lang])}" loading="lazy" onerror="this.remove()">
-           <figcaption class="tag">${esc(p.tag[lang])}</figcaption></figure>`).join("");
-    // Les vidéos ne se chargent et ne jouent que lorsqu'elles sont à l'écran
-    document.querySelectorAll(".tile.video video").forEach(v => videoIO.observe(v));
-    // Toucher une vidéo active ou coupe le son
-    document.querySelectorAll(".tile.video").forEach(t => t.addEventListener("click", () => {
-      const v = t.querySelector("video");
-      v.muted = !v.muted; v.play();
-      t.querySelector(".sound").textContent = v.muted ? "🔇" : "🔊";
-    }));
+    $("grid").innerHTML = S.portfolio.map(p => {
+      const tag = esc(p.tag[lang]);
+      return p.video
+        ? `<figure class="tile video rv">
+             <video src="${p.video}" poster="${p.poster}" muted loop playsinline preload="none"></video>
+             <span class="play">▶ Reel</span><span class="sound" aria-hidden="true">🔇</span>
+             <figcaption class="tag">${tag}</figcaption></figure>`
+        : `<figure class="tile rv"><img src="${p.src}" alt="${tag}" loading="lazy"><figcaption class="tag">${tag}</figcaption></figure>`;
+    }).join("");
+    document.querySelectorAll(".tile.video").forEach(tile => {
+      const v = tile.querySelector("video");
+      videoIO.observe(v);
+      // Toucher une vidéo active ou coupe le son
+      tile.addEventListener("click", () => {
+        v.muted = !v.muted; v.play();
+        tile.querySelector(".sound").textContent = v.muted ? "🔇" : "🔊";
+      });
+    });
+
     $("offerGrid").innerHTML = S.offers.map(o =>
       `<div class="offer rv"><div class="ic">${o.icon}</div><h3>${o.title[lang]}</h3><p>${o.text[lang]}</p></div>`).join("");
-    observe();
+    document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el));
   }
 
-  // Compteurs animés
-  function countUp(el, s = S.stats[el.dataset.i]) {
-    const start = performance.now(), dur = 1600;
+  function countUp(el) {
+    const value = +el.dataset.v, prefix = el.dataset.p, start = performance.now();
     const step = now => {
-      const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = (s.prefix || "") + fmt(s.value * e, s.decimals) + (s.suffix || "");
+      const p = Math.min(1, (now - start) / 1600);
+      el.textContent = prefix + fmt(value * (1 - Math.pow(1 - p, 3)));
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
   }
 
+  // Apparition au défilement : fondu, barres qui se remplissent, chiffres qui défilent
   const io = new IntersectionObserver(entries => entries.forEach(en => {
     if (!en.isIntersecting) return;
-    const el = en.target;
-    el.classList.add("in");
-    el.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%");
-    if (el.classList.contains("stats")) el.querySelectorAll("b[data-i]").forEach(b => countUp(b));
-    if (el.classList.contains("i30")) el.querySelectorAll("b[data-v]").forEach(b => countUp(b, { value: +b.dataset.v, prefix: b.dataset.p }));
-    io.unobserve(el);
+    en.target.classList.add("in");
+    fillBars(en.target);
+    en.target.querySelectorAll("b[data-v]").forEach(countUp);
+    io.unobserve(en.target);
   }), { threshold: 0.15 });
-  function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el)); }
 
-  $("lang").addEventListener("click", () => { lang = lang === "fr" ? "en" : "fr"; render();
+  $("lang").addEventListener("click", () => {
+    lang = lang === "fr" ? "en" : "fr";
+    render();
     document.querySelectorAll(".rv").forEach(el => el.classList.add("in"));
-    document.querySelectorAll("[data-w]").forEach(f => f.style.width = f.dataset.w + "%"); });
+    fillBars(document);
+  });
   addEventListener("scroll", () => $("nav").classList.toggle("solid", scrollY > 40), { passive: true });
   render();
 })();

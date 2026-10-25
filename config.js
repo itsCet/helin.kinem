@@ -1,16 +1,23 @@
 // ─────────────────────────────────────────────────────────────
 //  Tout le contenu du site se modifie ici.
 // ─────────────────────────────────────────────────────────────
+
+// Réseaux : abonnés à mettre à jour ici, ils alimentent aussi les chiffres clés
+const socials = [
+  { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
+  { name: "TikTok",    handle: "@helinkinem",  url: "https://www.tiktok.com/@helinkinem",    followers: 5336,
+    extra: { value: 612800, label: { fr: "j'aime", en: "likes" } } },
+  { name: "YouTube",   handle: "@HelinKinem",  url: "https://www.youtube.com/@HelinKinem",   followers: 298 }
+];
+
 window.SITE = {
   name: "Helin Kinem",
-  handle: "helin.kinem",
-  instagram: "https://www.instagram.com/helin.kinem/",
   city: { fr: "Genève", en: "Geneva" },
   email: "management.helinkinem@gmail.com",
-
-  // Photo de profil + portfolio : déposer les fichiers dans assets/photos/
-  // Vidéo : { video: "assets/videos/xxx.mp4", poster: "assets/videos/xxx.jpg", tag: {...} }
   portrait: "assets/photos/portrait.jpg",
+  socials,
+
+  // Portfolio : vidéo { video, poster, tag } ou photo { src, tag }
   portfolio: [
     { video: "assets/videos/mode-zara-blazer.mp4", poster: "assets/videos/mode-zara-blazer.jpg",
       tag: { fr: "Mode · Zara blazer", en: "Fashion · Zara blazer" } },
@@ -30,18 +37,17 @@ window.SITE = {
       tag: { fr: "Makeup · Rhode chez Sephora", en: "Makeup · Rhode at Sephora" } }
   ],
 
-  // Chiffres clés (relevés sur les profils en octobre 2026)
+  // Chiffres clés, calculés à partir des réseaux ci-dessus
   statsAsOf: { fr: "octobre 2026", en: "October 2026" },
   stats: [
-    { value: 10814,  label: { fr: "Communauté totale", en: "Total community" } },
-    { value: 5180,   label: { fr: "Abonnés Instagram", en: "Instagram followers" } },
-    { value: 5336,   label: { fr: "Followers TikTok", en: "TikTok followers" } },
-    { value: 612800, label: { fr: "J'aime sur TikTok", en: "TikTok likes" } }
+    { value: socials.reduce((sum, s) => sum + s.followers, 0), label: { fr: "Communauté totale", en: "Total community" } },
+    { value: socials[0].followers, label: { fr: "Abonnés Instagram", en: "Instagram followers" } },
+    { value: socials[1].followers, label: { fr: "Followers TikTok", en: "TikTok followers" } },
+    { value: socials[1].extra.value, label: { fr: "J'aime sur TikTok", en: "TikTok likes" } }
   ],
 
-  // Statistiques du dernier mois, par réseau (exports Instagram et TikTok d'octobre 2026).
-  // Le total des vues (premier chiffre de chaque réseau) est additionné dans le titre du bloc.
-  // approx: true ajoute « ≈ » ; text remplace le nombre affiché (ex. arrondis de l'app).
+  // Dernier mois, par réseau. Le premier chiffre de chaque réseau (les vues) est additionné dans le titre.
+  // approx: true ajoute « ≈ » ; text remplace le nombre (arrondis affichés par l'app).
   lastMonth: [
     { name: "Instagram",
       period: { fr: "24 sept. – 24 oct. 2026", en: "Sep 24 – Oct 24, 2026" },
@@ -78,8 +84,7 @@ window.SITE = {
       ] }
   ],
 
-  // Audience par réseau (tableaux de bord Instagram et TikTok, octobre 2026), en %.
-  // Un bouton par réseau permet de basculer.
+  // Audience par réseau, en % (tableaux de bord Instagram et TikTok, octobre 2026)
   audience: [
     { name: "Instagram",
       women: 89.5,
@@ -97,14 +102,6 @@ window.SITE = {
         { fr: "Allemagne", en: "Germany", v: 13.5 }, { fr: "Belgique", en: "Belgium", v: 3.5 },
         { fr: "Pays-Bas", en: "Netherlands", v: 2.1 }
       ] }
-  ],
-
-  // Réseaux sociaux (carte « Mes réseaux »). Le contact passe uniquement par e-mail.
-  socials: [
-    { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
-    { name: "TikTok",    handle: "@helinkinem",  url: "https://www.tiktok.com/@helinkinem",    followers: 5336,
-      extra: { value: 612800, label: { fr: "j'aime", en: "likes" } } },
-    { name: "YouTube",   handle: "@HelinKinem",  url: "https://www.youtube.com/@HelinKinem",   followers: 298 }
   ],
 
   niches: {
@@ -127,8 +124,7 @@ window.SITE = {
               en: "Attendance and live coverage in Geneva and French-speaking Switzerland." } }
   ],
 
-  // Marques déjà accompagnées (laisser vide pour masquer la section).
-  // Logos à déposer dans assets/logos/ (SVG ou PNG transparent). Sans fichier, le nom s'affiche.
+  // Marques déjà accompagnées. Logos dans assets/logos/ (PNG transparent ou SVG).
   // tall: true agrandit un logo carré ou empilé.
   brands: [
     { name: "Manor",     logo: "assets/logos/manor.png",     url: "https://www.manor.ch" },
