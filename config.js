@@ -19,8 +19,8 @@ window.SITE = {
 
   // Portfolio : vidéo { video, poster, tag } ou photo { src, tag }
   portfolio: [
-    { video: "assets/videos/mode-zara-blazer.mp4", poster: "assets/videos/mode-zara-blazer.jpg",
-      tag: { fr: "Mode · Zara blazer", en: "Fashion · Zara blazer" } },
+    { video: "assets/videos/mode-blair-waldorf.mp4", poster: "assets/videos/mode-blair-waldorf.jpg",
+      tag: { fr: "Mode · Blair Waldorf girl", en: "Fashion · Blair Waldorf girl" } },
     { video: "assets/videos/food-gran-caffe.mp4", poster: "assets/videos/food-gran-caffe.jpg",
       tag: { fr: "Food · Gran Caffè, Genève", en: "Food · Gran Caffè, Geneva" } },
     { video: "assets/videos/spot-cookly.mp4", poster: "assets/videos/spot-cookly.jpg",
