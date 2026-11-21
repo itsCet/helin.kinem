@@ -319,7 +319,7 @@
           <div class="au-legend"><span id="auW"></span><span id="auM"></span></div>
         </div>
         <div><div class="au-sub" data-t="au_age"></div><div id="auAges"></div></div>
-        <div><div class="au-sub" data-t="au_countries"></div><div id="auCountries"></div></div>
+        <div><div class="au-sub" id="auCountriesTitle"></div><div id="auCountries"></div></div>
       </div>
     </div>
   </div>
@@ -401,7 +401,7 @@
       month_card: n => `${n} · dernier mois`,
       au_title: "Qui me suit", au_gender: "Genre", au_age: "Âge", au_countries: "Pays",
       au_women: "Femmes", au_men: "Hommes",
-      au_hl: (w, a, c) => `Une audience à <b>${w} féminine</b>, dont <b>${a} ont entre 25 et 34 ans</b>. <b>${c}</b> vit en Suisse ou en France.`,
+      au_hl: (w, a, c, viewers) => `Une audience à <b>${w} féminine</b>, dont <b>${a} ont entre 25 et 34 ans</b>. ${viewers ? `<b>${c}</b> des vues viennent de Suisse ou de France.` : `<b>${c}</b> vit en Suisse ou en France.`}`,
       about_eyebrow: "À propos", about_title: "Genève, vue de <em>l'intérieur</em>.",
       about_p1: "Un cours de pilates au réveil, un matcha latte dans mon café préféré, une routine skincare bien rodée : je partage un quotidien genevois élégant, avec New York toujours en tête.",
       about_p2: "Mode, beauté, bien-être : mon audience me suit pour des recommandations sincères. Chaque collaboration est pensée pour s'intégrer naturellement à mon univers.",
@@ -425,7 +425,7 @@
       month_card: n => `${n} · last month`,
       au_title: "Who follows me", au_gender: "Gender", au_age: "Age", au_countries: "Countries",
       au_women: "Women", au_men: "Men",
-      au_hl: (w, a, c) => `An audience that is <b>${w} female</b>, with <b>${a} aged 25 to 34</b>. <b>${c}</b> live in Switzerland or France.`,
+      au_hl: (w, a, c, viewers) => `An audience that is <b>${w} female</b>, with <b>${a} aged 25 to 34</b>. ${viewers ? `<b>${c}</b> of views come from Switzerland or France.` : `<b>${c}</b> live in Switzerland or France.`}`,
       about_eyebrow: "About", about_title: "Geneva, from the <em>inside</em>.",
       about_p1: "A morning pilates class, a matcha latte at my favourite café, a well-tuned skincare routine: I share an elegant Geneva life, with New York always on my mind.",
       about_p2: "Fashion, beauty, wellness: my audience follows me for honest recommendations. Every collaboration is designed to fit naturally into my world.",
@@ -482,12 +482,13 @@
     $("auTabs").querySelectorAll("button").forEach(b => b.onclick = () => { auIdx = +b.dataset.i; renderAudience(); });
     const young = A.ages.find(a => a[0].startsWith("25"))[1];
     const chFr = A.countries.filter(c => c.en === "Switzerland" || c.en === "France").reduce((x, c) => x + c.v, 0);
-    $("auHl").innerHTML = t.au_hl(pct(A.women), pct(young), pct(chFr));
+    $("auHl").innerHTML = t.au_hl(pct(A.women), pct(young), pct(chFr), !!A.countriesTitle);
     $("auWomen").innerHTML = `${pct(A.women)} <small>${t.au_women.toLowerCase()}</small>`;
     $("auBar").dataset.w = A.women;
     $("auW").textContent = `${t.au_women} ${pct(A.women)}`;
     $("auM").textContent = `${t.au_men} ${pct(100 - A.women)}`;
     $("auAges").innerHTML = A.ages.map(([label, v]) => bar(label, v)).join("");
+    $("auCountriesTitle").textContent = A.countriesTitle ? A.countriesTitle[lang] : t.au_countries;
     $("auCountries").innerHTML = A.countries.map(c => bar(c[lang], c.v)).join("");
     if ($("audience").classList.contains("in")) requestAnimationFrame(() => fillBars($("audience")));
   }

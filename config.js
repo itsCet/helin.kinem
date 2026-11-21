@@ -97,10 +97,12 @@ window.SITE = {
     { name: "TikTok",
       women: 88,
       ages: [ ["18–24", 21.3], ["25–34", 63.0], ["35–44", 9.9], ["45–54", 3.7], ["55+", 2.1] ],
+      // Pays des spectateurs (onglet « Viewers » de TikTok, 14–20 nov. 2026)
+      countriesTitle: { fr: "Pays des spectateurs", en: "Viewer countries" },
       countries: [
-        { fr: "France", en: "France", v: 27.5 }, { fr: "Suisse", en: "Switzerland", v: 26.1 },
-        { fr: "Allemagne", en: "Germany", v: 13.5 }, { fr: "Belgique", en: "Belgium", v: 3.5 },
-        { fr: "Pays-Bas", en: "Netherlands", v: 2.1 }
+        { fr: "Suisse", en: "Switzerland", v: 81.7 }, { fr: "France", en: "France", v: 11.2 },
+        { fr: "Liechtenstein", en: "Liechtenstein", v: 2.0 }, { fr: "Belgique", en: "Belgium", v: 1.5 },
+        { fr: "Allemagne", en: "Germany", v: 0.7 }
       ] }
   ],
 
