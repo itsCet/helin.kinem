@@ -27,14 +27,16 @@ window.SITE = {
       tag: { fr: "Spot · Cookly, Genève", en: "Spot · Cookly, Geneva" } },
     { video: "assets/videos/event-geneva-open.mp4", poster: "assets/videos/event-geneva-open.jpg",
       tag: { fr: "Événement · Gonet Geneva Open", en: "Event · Gonet Geneva Open" } },
-    { video: "assets/videos/beaute-lash-lift.mp4", poster: "assets/videos/beaute-lash-lift.jpg",
-      tag: { fr: "Beauté · Korean lash lift", en: "Beauty · Korean lash lift" } },
+    { video: "assets/videos/beaute-rhode-review.mp4", poster: "assets/videos/beaute-rhode-review.jpg",
+      tag: { fr: "Beauté · Avis Rhode", en: "Beauty · Rhode review" } },
     { video: "assets/videos/lifestyle-day-in-geneva.mp4", poster: "assets/videos/lifestyle-day-in-geneva.jpg",
       tag: { fr: "Lifestyle · Day in my life, Genève", en: "Lifestyle · Day in my life, Geneva" } },
     { video: "assets/videos/lifestyle-grwm.mp4", poster: "assets/videos/lifestyle-grwm.jpg",
       tag: { fr: "Lifestyle · Get ready with me", en: "Lifestyle · Get ready with me" } },
     { video: "assets/videos/makeup-rhode-sephora.mp4", poster: "assets/videos/makeup-rhode-sephora.jpg",
-      tag: { fr: "Makeup · Rhode chez Sephora", en: "Makeup · Rhode at Sephora" } }
+      tag: { fr: "Makeup · Rhode chez Sephora", en: "Makeup · Rhode at Sephora" } },
+    { video: "assets/videos/food-tablard.mp4", poster: "assets/videos/food-tablard.jpg",
+      tag: { fr: "Food · Tablard, Genève", en: "Food · Tablard, Geneva" } }
   ],
 
   // Chiffres clés, calculés à partir des réseaux ci-dessus
