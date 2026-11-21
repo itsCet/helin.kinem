@@ -4,8 +4,8 @@
 
 // Réseaux : abonnés à mettre à jour ici, ils alimentent aussi les chiffres clés
 const socials = [
-  { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5180 },
-  { name: "TikTok",    handle: "@helinkinem",  url: "https://www.tiktok.com/@helinkinem",    followers: 5336,
+  { name: "Instagram", handle: "@helin.kinem", url: "https://www.instagram.com/helin.kinem/", followers: 5312 },
+  { name: "TikTok",    handle: "@helinkinem",  url: "https://www.tiktok.com/@helinkinem",    followers: 5403,
     extra: { value: 612800, label: { fr: "j'aime", en: "likes" } } },
   { name: "YouTube",   handle: "@HelinKinem",  url: "https://www.youtube.com/@HelinKinem",   followers: 298 }
 ];
@@ -38,7 +38,7 @@ window.SITE = {
   ],
 
   // Chiffres clés, calculés à partir des réseaux ci-dessus
-  statsAsOf: { fr: "octobre 2026", en: "October 2026" },
+  statsAsOf: { fr: "novembre 2026", en: "November 2026" },
   stats: [
     { value: socials.reduce((sum, s) => sum + s.followers, 0), label: { fr: "Communauté totale", en: "Total community" } },
     { value: socials[0].followers, label: { fr: "Abonnés Instagram", en: "Instagram followers" } },
