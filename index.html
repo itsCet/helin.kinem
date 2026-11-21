@@ -463,11 +463,12 @@
   $("mailBtn").href = $("mailAddr").href = `mailto:${S.email}?subject=${encodeURIComponent("Collaboration × " + S.name)}`;
   $("mailAddr").textContent = S.email;
   $("year").textContent = new Date().getFullYear();
-  $("brandList").innerHTML = S.brands.map(b => `
-    <a class="brand${b.tall ? " tall" : ""}" href="${b.url}" target="_blank" rel="noopener">
-      <img src="${b.logo}" alt="${esc(b.name)}" loading="lazy"
-           onerror="this.replaceWith(Object.assign(document.createElement('span'), { textContent: this.alt }))">
-    </a>`).join("");
+  $("brandList").innerHTML = S.brands.map(b => {
+    const cls = `brand${b.tall ? " tall" : ""}`;
+    const logo = `<img src="${b.logo}" alt="${esc(b.name)}" loading="lazy"
+           onerror="this.replaceWith(Object.assign(document.createElement('span'), { textContent: this.alt }))">`;
+    return b.url ? `<a class="${cls}" href="${b.url}" target="_blank" rel="noopener">${logo}</a>` : `<div class="${cls}">${logo}</div>`;
+  }).join("");
 
   // Les vidéos ne se chargent et ne jouent que lorsqu'elles sont à l'écran
   const videoIO = new IntersectionObserver(entries => entries.forEach(en => {
